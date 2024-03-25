@@ -1,0 +1,157 @@
+# depslib dependency file v1.0
+1710427718 source:d:\cpp\sad\game.cpp
+	"TextureManager.h"
+	"game.hpp"
+	"GameObject.h"
+
+1710297322 d:\cpp\sad\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+	<stdio.h>
+
+1710296745 source:d:\cpp\sad\main.cpp
+	"SDL.h"
+	<iostream>
+	"game.hpp"
+
+1710301804 d:\cpp\sad\texturemanager.h
+	"game.hpp"
+
+1710301824 source:d:\cpp\sad\texturemanager.cpp
+	"TextureManager.h"
+
+1710427918 d:\cpp\sad\gameobject.h
+	"game.hpp"
+
+1710428534 source:d:\cpp\sad\src\main.cpp
+	"SDL.h"
+	<iostream>
+	"game.hpp"
+
+1710297322 d:\cpp\sad\src\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+	<stdio.h>
+
+1710301824 source:d:\cpp\sad\src\texturemanager.cpp
+	"TextureManager.h"
+
+1710301804 d:\cpp\sad\src\texturemanager.h
+	"game.hpp"
+
+1710428448 source:d:\cpp\sad\src\game.cpp
+	"TextureManager.h"
+	"game.hpp"
+	"GameObject.h"
+
+1710428492 d:\cpp\sad\src\gameobject.h
+	"game.hpp"
+
+1710428448 source:d:\cpp\sad\src\gameobject.cpp
+	"GameObject.h"
+	"TextureManager.h"
+
+1711376967 source:c:\users\admin\desktop\sad\src\game.cpp
+	"TextureManager.h"
+	"game.hpp"
+	"GameObject.h"
+	"Map.h"
+
+1710435872 c:\users\admin\desktop\sad\src\texturemanager.h
+	"game.hpp"
+
+1711294806 c:\users\admin\desktop\sad\src\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1710839840 c:\users\admin\desktop\sad\src\gameobject.h
+	"game.hpp"
+
+1711042541 source:c:\users\admin\desktop\sad\src\main.cpp
+	"SDL.h"
+	<iostream>
+	"game.hpp"
+
+1710435872 source:c:\users\admin\desktop\sad\src\texturemanager.cpp
+	"TextureManager.h"
+
+1711032954 source:c:\users\admin\desktop\sad\src\gameobject.cpp
+	"GameObject.h"
+	"TextureManager.h"
+
+1711376071 c:\users\admin\desktop\sad\src\map.h
+	"game.hpp"
+	"Piece.h"
+
+1711377683 source:c:\users\admin\desktop\sad\src\map.cpp
+	"Map.h"
+	"TextureManager.h"
+	"Pawn.h"
+
+1711016039 source:c:\users\admin\desktop\sad\src\piece.cpp
+	"Piece.h"
+
+1711297538 c:\users\admin\desktop\sad\src\piece.h
+
+1711016490 source:c:\users\admin\desktop\sad\src\pawn.cpp
+	"Pawn.h"
+
+1711296423 c:\users\admin\desktop\sad\src\pawn.h
+	"Piece.h"
+
+1711377916 source:c:\users\admin\desktop\chess2\src\game.cpp
+	"TextureManager.h"
+	"game.hpp"
+	"GameObject.h"
+	"Map.h"
+
+1710435872 c:\users\admin\desktop\chess2\src\texturemanager.h
+	"game.hpp"
+
+1711294806 c:\users\admin\desktop\chess2\src\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1710839840 c:\users\admin\desktop\chess2\src\gameobject.h
+	"game.hpp"
+
+1711376071 c:\users\admin\desktop\chess2\src\map.h
+	"game.hpp"
+	"Piece.h"
+
+1711297538 c:\users\admin\desktop\chess2\src\piece.h
+
+1711032954 source:c:\users\admin\desktop\chess2\src\gameobject.cpp
+	"GameObject.h"
+	"TextureManager.h"
+
+1711042541 source:c:\users\admin\desktop\chess2\src\main.cpp
+	"SDL.h"
+	<iostream>
+	"game.hpp"
+
+1711377683 source:c:\users\admin\desktop\chess2\src\map.cpp
+	"Map.h"
+	"TextureManager.h"
+	"Pawn.h"
+
+1711296423 c:\users\admin\desktop\chess2\src\pawn.h
+	"Piece.h"
+
+1711016490 source:c:\users\admin\desktop\chess2\src\pawn.cpp
+	"Pawn.h"
+
+1711016039 source:c:\users\admin\desktop\chess2\src\piece.cpp
+	"Piece.h"
+
+1710435872 source:c:\users\admin\desktop\chess2\src\texturemanager.cpp
+	"TextureManager.h"
+
