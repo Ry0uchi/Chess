@@ -1,7 +1,5 @@
 #include "Map.h"
 #include "TextureManager.h"
-#include "Pawn.h"
-
 
 const int xBoard = 385 + 20*3/4;
 const int yBoard = 105 + 22*3/4;
@@ -58,21 +56,8 @@ Map::Map()
     dest.h = 50;
     dest.x = xBoard;
     dest.y = yBoard;
-}
 
-void Map::LoadMap( int arr[8][8] )
-{
-   for( int row = 0; row < 8; ++row )
-   {
-       for( int colum = 0; colum < 8; ++colum )
-       {
-           map_[row][colum] = arr[row][colum];
-       }
-   }
-}
 
-void Map::DrawMap()
-{
     int type = 0;
     for( int row = 0; row < 8; ++row )
    {
@@ -85,12 +70,12 @@ void Map::DrawMap()
            switch( type )
            {
             case -6:
-                whitePieces.push_back(new Pawn( true, (dest.x - xBoard - 5) / 60 , (dest.y - yBoard - 5) / 60 ));
+                whitePieces.push_back(new Pawn( true, dest.x - 5, dest.y - 5 ));
                 break;
             case -5:
-                TextureManager::Draw( RookW, src, dest );
+                whitePieces.push_back(new Rook( true, (dest.x - xBoard - 5) / 60 , (dest.y - yBoard - 5) / 60 ));
                 break;
-            case -4:
+            /*case -4:
                 TextureManager::Draw( KnightW, src, dest );
                 break;
             case -3:
@@ -119,16 +104,38 @@ void Map::DrawMap()
                 break;
             case 1:
                 TextureManager::Draw( KingB, src, dest );
-                break;
+                break;*/
            }
 
        }
    }
+}
+
+void Map::LoadMap( int arr[8][8] )
+{
+   for( int row = 0; row < 8; ++row )
+   {
+       for( int colum = 0; colum < 8; ++colum )
+       {
+           map_[row][colum] = arr[row][colum];
+       }
+   }
+}
+
+void Map::DrawMap()
+{
+
     for (int i = 0; i < 8; ++i)
+    {
+        dest.x = whitePieces[i]->x + 5;
+        dest.y = whitePieces[i]->y + 5;
+        TextureManager::Draw( PawnW, src ,dest );
+    }
+    for (int i = 8; i < 10; ++i)
     {
         dest.x = whitePieces[i]->xpos* 60 + 5 + xBoard;
         dest.y = whitePieces[i]->ypos* 60 + 5 + yBoard;
-        TextureManager::Draw( PawnW, src ,dest );
+        TextureManager::Draw( RookW, src ,dest );
     }
 }
 

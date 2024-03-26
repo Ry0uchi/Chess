@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 
 enum class PieceName {Empty , Pawn , Knight , Bishop , Rook , Queen , King};
 
@@ -13,6 +14,8 @@ public:
     int xpos = -1;
     int ypos = -1;
     int value = -1;
+    int x = -1;
+    int y = -1;
 
     PieceName GetName();
 

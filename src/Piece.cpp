@@ -38,8 +38,8 @@ void Piece::SetPosition( int x, int y )
 {
   if( alive )
   {
-    this->x = x + 30;
-    this->y = y + 30;
+    this->x = x - 30;
+    this->y = y - 30;
     xpos = (x - xBoard) / 60;
     ypos = (y - yBoard) / 60;
   }
