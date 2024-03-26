@@ -2,6 +2,8 @@
 
 #include "game.hpp"
 #include "Piece.h"
+#include "Pawn.h"
+#include "../header/Rook.h"
 
 class Map
 {

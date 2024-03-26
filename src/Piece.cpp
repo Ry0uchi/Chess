@@ -1,5 +1,9 @@
 #include "Piece.h"
 
+const int xBoard = 385 + 20*3/4;
+const int yBoard = 105 + 22*3/4;
+
+
 Piece::Piece()
 {}
 
@@ -30,12 +34,14 @@ bool Piece::IsMovementPossible( int final_xpos, int final_ypos )
 }
 
 
-void Piece::SetPosition( int xpos, int ypos )
+void Piece::SetPosition( int x, int y )
 {
   if( alive )
   {
-    this->xpos = xpos;
-    this->ypos = ypos;
+    this->x = x + 30;
+    this->y = y + 30;
+    xpos = (x - xBoard) / 60;
+    ypos = (y - yBoard) / 60;
   }
 }
 
@@ -49,8 +55,8 @@ bool Piece::IsAlive()
 void Piece::SetDead()
 {
   alive = false;
-  this->xpos = -1;
-  this->ypos = -1;
+  this->x = -1;
+  this->y = -1;
 }
 
 void Piece::Revive()

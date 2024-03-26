@@ -1,11 +1,15 @@
 #include "Pawn.h"
+const int xBoard = 385 + 20*3/4;
+const int yBoard = 105 + 22*3/4;
 
-Pawn::Pawn( bool isWhite, int xpos, int ypos )
+Pawn::Pawn( bool isWhite, int x, int y )
 {
     this->name = PieceName::Pawn;
     this->isWhite = isWhite;
-    this->xpos = xpos;
-    this->ypos = ypos;
+    this->x = x;
+    this->y = y;
+    xpos = (x - 5 - xBoard) / 60;
+    ypos = (y - 5 - yBoard) / 60;
     alive = true;
     value = 1;
 }

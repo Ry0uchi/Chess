@@ -72,11 +72,11 @@ void game::handleEvents()
             //Chess movement
             for ( Piece* piece : map_->whitePieces )
             {
-                std::cout << piece->xpos << " " << &piece << std::endl;
-                if ( mouseX >= piece->xpos * 60 + xBoard  && mouseX < (piece->xpos + 1) * 60 + xBoard &&
-                    mouseY >= piece->ypos * 60 + yBoard && mouseY < (piece->ypos + 1) * 60 + yBoard )
+                std::cout << piece->xpos << " " << piece->ypos << " " << &piece << std::endl;
+                if ( mouseX >= piece->x && mouseX < piece->x + 60 &&
+                    mouseY >= piece->y && mouseY < piece->y  + 60 )
                 {
-                    piece->SetPosition( (mouseX - xBoard) / 60, (mouseY - yBoard) / 60 );
+                    piece->SetPosition( mouseX - xBoard, mouseY - yBoard );
                     std::cout << "Chess Movement Dectected\n" << piece->xpos << " " << piece->ypos << "\n";
                     break;
                 }
