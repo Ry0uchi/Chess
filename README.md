@@ -1,1 +1,2 @@
 # Chess2
+NO MOUSE MOVEMENT 
