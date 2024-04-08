@@ -50,7 +50,7 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
 
 
 
-    Board = new GameObject ( "assets/Chess_Wood.png", 640-255, 360-255 );
+    Board = new GameObject ( "assets/Chess_Wood.png" );
     map_ = new Map();
 
 }
@@ -68,7 +68,7 @@ void game::handleEvents()
         case SDL_MOUSEBUTTONDOWN:
             int mouseX, mouseY;
             SDL_GetMouseState( &mouseX, &mouseY );
-            std::cout << "Mouse!\n";
+            std::cout << "Mouse!\n" << mouseX << " " << mouseY << "\n";
             //Chess movement
             for ( Piece* piece : map_->whitePieces )
             {
@@ -87,7 +87,7 @@ void game::handleEvents()
 
 void game::update()
 {
-    Board->UpdateBoard();
+    Board->UpdateBoard(640-255, 360-255);
 }
 void game::render()
 {

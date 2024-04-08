@@ -1,15 +1,12 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 
-GameObject::GameObject( const char* texturesheet, int x, int y )
+GameObject::GameObject( const char* texturesheet )
 {
     objTexture = TextureManager::LoadTexture( texturesheet );
-
-    xpos = x;
-    ypos = y;
 }
 
-void GameObject::UpdateBoard()
+void GameObject::UpdateBoard(int xpos, int ypos)
 {
     srcRect.h = 680;
     srcRect.w = 680;
@@ -20,6 +17,19 @@ void GameObject::UpdateBoard()
     destRect.y = ypos;
     destRect.w = 510;
     destRect.h = 510;
+}
+
+void GameObject::UpdateChessPiece(int xpos, int ypos)
+{
+    srcRect.h = 1125;
+    srcRect.w = 1125;
+    srcRect.x = 0;
+    srcRect.y = 0;
+
+    destRect.x = xpos;
+    destRect.y = ypos;
+    destRect.w = 50;
+    destRect.h = 50;
 }
 
 void GameObject::Render()

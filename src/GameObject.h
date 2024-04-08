@@ -5,11 +5,12 @@
 class GameObject
 {
 public:
-    GameObject( const char* texturesheet, int x, int y );
+    GameObject( const char* texturesheet );
     ~GameObject();
 
-    void UpdateBoard();
+    void UpdateBoard(int xpos, int ypos);
     void Render();
+    void UpdateChessPiece(int xpos, int ypos);
 
 private:
     int xpos;

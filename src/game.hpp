@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <vector>
 #include <math.h>
+#include <string>
 
 class game
 {
