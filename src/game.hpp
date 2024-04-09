@@ -3,6 +3,7 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Vect2D.h"
 #include <iostream>
 #include <stdio.h>
 #include <vector>

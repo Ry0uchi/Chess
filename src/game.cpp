@@ -2,14 +2,13 @@
 #include "game.hpp"
 #include "GameObject.h"
 #include "Map.h"
+#include "EventManager.h"
 
 const int CELL_SIZE = 60;
-const int xBoard = 385 + 20*3/4;
-const int yBoard = 105 + 22*3/4;
 
-
+EventManager* m_Event;
 GameObject* Board;
-Map* map_;
+Map* m_Map;
 
 SDL_Renderer* game::renderer = nullptr;
 
@@ -49,51 +48,46 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
     }
 
 
-
-    Board = new GameObject ( "assets/Chess_Wood.png" );
-    map_ = new Map();
+    m_Event = new EventManager();
+    Board = new GameObject("assets/Chess_Wood.png");
+    m_Map = new Map(m_Map->last_map != nullptr ? m_Map->last_map : new int[8][8]);
 
 }
 
 void game::handleEvents()
 {
-
-    SDL_Event event;
-    SDL_PollEvent ( &event );
-    switch ( event.type )
-    {
-        case SDL_QUIT:
-            isRunning = false;
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            int mouseX, mouseY;
-            SDL_GetMouseState( &mouseX, &mouseY );
-            std::cout << "Mouse!\n" << mouseX << " " << mouseY << "\n";
-            //Chess movement
-            for ( Piece* piece : map_->whitePieces )
-            {
-                std::cout << piece->xpos << " " << piece->ypos << " " << &piece << std::endl;
-                if ( mouseX >= piece->x && mouseX < piece->x + 60 &&
-                    mouseY >= piece->y && mouseY < piece->y  + 60 )
-                {
-                    piece->SetPosition( mouseX - xBoard, mouseY - yBoard );
-                    std::cout << "Chess Movement Dectected\n" << piece->xpos << " " << piece->ypos << "\n";
-                    break;
-                }
-            }
-            break;
-    }
+    m_Event->Listen();
 }
 
 void game::update()
 {
+    if (m_Event->isKeyDown(SDL_SCANCODE_ESCAPE) || m_Event->isRunning(false))
+    {
+        isRunning = false;
+    }
+    else if(m_Event->MouseButtonDown(LEFT))
+    {
+        Vect2f pos = m_Event->GetMousePos();
+        Vect2i Bpos = ((pos.X - xBoard) / CELL_SIZE, (pos.Y - yBoard) / CELL_SIZE);
+        if(pos.X >= 0 && pos.X < 8 && pos.Y >= 0 && pos.Y < 8)
+        {
+            for(auto piece : m_Map->whitePieces)
+            {
+                if(piece->GetPos() == Bpos)
+                {
+                    piece->SetPosition(pos.X + 5, pos.Y + 5);
+                }
+            }
+        }
+    }
     Board->UpdateBoard(640-255, 360-255);
+    m_Map->Update();
 }
 void game::render()
 {
     SDL_RenderClear ( renderer );
     Board->Render();
-    map_->DrawMap();
+    m_Map->DrawMap();
     //add stuff to render
     SDL_RenderPresent( renderer );
 }
@@ -101,7 +95,8 @@ void game::clean()
 {
     SDL_DestroyWindow ( window );
     SDL_DestroyRenderer ( renderer );
-    map_->Delete();
+    m_Map->Delete();
+    delete m_Event;
     SDL_Quit();
     std::cout << "Game Clean\n";
 }

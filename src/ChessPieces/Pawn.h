@@ -9,13 +9,12 @@ private:
     bool enemy_diagonal_right = false;
 
 public:
-    Pawn(bool, int, int );
+    Pawn(bool, Vect2f );
     ~Pawn();
 
     using Piece::GetName;
-    using Piece::GetXpos;
-    using Piece::GetYpos;
+    using Piece::GetPos;
 
-    bool IsMovementPossible(int, int);
+    bool IsMovementPossible(Vect2i);
 };
 

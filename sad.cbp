@@ -31,16 +31,29 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/ChessPieces/Bishop.cpp" />
+		<Unit filename="src/ChessPieces/Bishop.h" />
+		<Unit filename="src/ChessPieces/King.cpp" />
+		<Unit filename="src/ChessPieces/King.h" />
+		<Unit filename="src/ChessPieces/Knight.cpp" />
+		<Unit filename="src/ChessPieces/Knight.h" />
+		<Unit filename="src/ChessPieces/Pawn.cpp" />
+		<Unit filename="src/ChessPieces/Pawn.h" />
+		<Unit filename="src/ChessPieces/Piece.cpp" />
+		<Unit filename="src/ChessPieces/Piece.h" />
+		<Unit filename="src/ChessPieces/Queen.cpp" />
+		<Unit filename="src/ChessPieces/Queen.h" />
+		<Unit filename="src/ChessPieces/Rook.cpp" />
+		<Unit filename="src/ChessPieces/Rook.h" />
+		<Unit filename="src/EventManager.cpp" />
+		<Unit filename="src/EventManager.h" />
 		<Unit filename="src/GameObject.cpp" />
 		<Unit filename="src/GameObject.h" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/Map.h" />
-		<Unit filename="src/Pawn.cpp" />
-		<Unit filename="src/Pawn.h" />
-		<Unit filename="src/Piece.cpp" />
-		<Unit filename="src/Piece.h" />
 		<Unit filename="src/TextureManager.cpp" />
 		<Unit filename="src/TextureManager.h" />
+		<Unit filename="src/Vect2D.h" />
 		<Unit filename="src/game.cpp" />
 		<Unit filename="src/game.hpp" />
 		<Unit filename="src/main.cpp" />

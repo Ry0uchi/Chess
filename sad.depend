@@ -104,32 +104,44 @@
 1711296423 c:\users\admin\desktop\sad\src\pawn.h
 	"Piece.h"
 
-1711377916 source:c:\users\admin\desktop\chess2\src\game.cpp
+1712654389 source:c:\users\admin\desktop\chess2\src\game.cpp
 	"TextureManager.h"
 	"game.hpp"
 	"GameObject.h"
 	"Map.h"
+	"EventManager.h"
 
 1710435872 c:\users\admin\desktop\chess2\src\texturemanager.h
 	"game.hpp"
 
-1711294806 c:\users\admin\desktop\chess2\src\game.hpp
+1712624771 c:\users\admin\desktop\chess2\src\game.hpp
 	"SDL.h"
 	"SDL_image.h"
+	"Vect2D.h"
 	<iostream>
 	<stdio.h>
 	<vector>
+	<math.h>
+	<string>
 
-1710839840 c:\users\admin\desktop\chess2\src\gameobject.h
+1712586339 c:\users\admin\desktop\chess2\src\gameobject.h
 	"game.hpp"
 
-1711376071 c:\users\admin\desktop\chess2\src\map.h
+1712650129 c:\users\admin\desktop\chess2\src\map.h
 	"game.hpp"
-	"Piece.h"
+	"GameObject.h"
+	"ChessPieces/Piece.h"
+	"ChessPieces/Pawn.h"
+	"ChessPieces/Knight.h"
+	"ChessPieces/Bishop.h"
+	"ChessPieces/Queen.h"
+	"ChessPieces/King.h"
+	"ChessPieces/Rook.h"
 
-1711297538 c:\users\admin\desktop\chess2\src\piece.h
+1711444828 c:\users\admin\desktop\chess2\src\piece.h
+	<math.h>
 
-1711032954 source:c:\users\admin\desktop\chess2\src\gameobject.cpp
+1712587280 source:c:\users\admin\desktop\chess2\src\gameobject.cpp
 	"GameObject.h"
 	"TextureManager.h"
 
@@ -138,20 +150,83 @@
 	<iostream>
 	"game.hpp"
 
-1711377683 source:c:\users\admin\desktop\chess2\src\map.cpp
+1712650640 source:c:\users\admin\desktop\chess2\src\map.cpp
 	"Map.h"
 	"TextureManager.h"
-	"Pawn.h"
 
 1711296423 c:\users\admin\desktop\chess2\src\pawn.h
 	"Piece.h"
 
-1711016490 source:c:\users\admin\desktop\chess2\src\pawn.cpp
+1711460609 source:c:\users\admin\desktop\chess2\src\pawn.cpp
 	"Pawn.h"
 
-1711016039 source:c:\users\admin\desktop\chess2\src\piece.cpp
+1711460408 source:c:\users\admin\desktop\chess2\src\piece.cpp
 	"Piece.h"
 
 1710435872 source:c:\users\admin\desktop\chess2\src\texturemanager.cpp
 	"TextureManager.h"
+
+1711382862 c:\users\admin\desktop\chess2\header\rook.h
+	"../src/Piece.h"
+
+1711383733 source:c:\users\admin\desktop\chess2\src\rook.cpp
+	"../header/Rook.h"
+
+1711383756 source:c:\users\admin\desktop\chess2\src\bishop.cpp
+	"../header/Bishop.h"
+
+1711383733 c:\users\admin\desktop\chess2\header\bishop.h
+	"../src/Piece.h"
+
+1712654066 source:c:\users\admin\desktop\chess2\src\chesspieces\bishop.cpp
+	"Bishop.h"
+
+1712653441 c:\users\admin\desktop\chess2\src\chesspieces\bishop.h
+	"Piece.h"
+
+1712654590 c:\users\admin\desktop\chess2\src\chesspieces\piece.h
+	<math.h>
+	"../Vect2D.h"
+
+1712654039 source:c:\users\admin\desktop\chess2\src\chesspieces\king.cpp
+	"King.h"
+
+1712653526 c:\users\admin\desktop\chess2\src\chesspieces\king.h
+	"Piece.h"
+
+1712654050 source:c:\users\admin\desktop\chess2\src\chesspieces\knight.cpp
+	"Knight.h"
+
+1712653626 c:\users\admin\desktop\chess2\src\chesspieces\knight.h
+	"Piece.h"
+
+1712653192 source:c:\users\admin\desktop\chess2\src\chesspieces\pawn.cpp
+	"Pawn.h"
+
+1712652924 c:\users\admin\desktop\chess2\src\chesspieces\pawn.h
+	"Piece.h"
+
+1712654006 source:c:\users\admin\desktop\chess2\src\chesspieces\piece.cpp
+	"Piece.h"
+
+1712650515 source:c:\users\admin\desktop\chess2\src\chesspieces\queen.cpp
+	"Queen.h"
+
+1712654666 c:\users\admin\desktop\chess2\src\chesspieces\queen.h
+	"Piece.h"
+
+1712654101 source:c:\users\admin\desktop\chess2\src\chesspieces\rook.cpp
+	"Rook.h"
+
+1712653678 c:\users\admin\desktop\chess2\src\chesspieces\rook.h
+	"Piece.h"
+
+1712653753 source:c:\users\admin\desktop\chess2\src\eventmanager.cpp
+	"EventManager.h"
+
+1712649437 c:\users\admin\desktop\chess2\src\eventmanager.h
+	"game.hpp"
+
+1712654616 c:\users\admin\desktop\chess2\src\vect2d.h
+	<iostream>
 

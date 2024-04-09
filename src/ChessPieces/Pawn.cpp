@@ -1,34 +1,31 @@
 #include "Pawn.h"
-const int xBoard = 385 + 20*3/4;
-const int yBoard = 105 + 22*3/4;
 
-Pawn::Pawn( bool isWhite, int x, int y )
+Pawn::Pawn( bool isWhite, Vect2f pos)
 {
     this->name = PieceName::Pawn;
     this->isWhite = isWhite;
-    this->x = x;
-    this->y = y;
-    xpos = (x - 5 - xBoard) / 60;
-    ypos = (y - 5 - yBoard) / 60;
+    this->pos = pos;
+    Bpos.X = static_cast<int>((pos.X - xBoard) / 60);
+    Bpos.Y = static_cast<int>((pos.Y - yBoard) / 60);
     alive = true;
     value = 1;
 }
 Pawn::~Pawn()
 {}
 
-bool Pawn::IsMovementPossible( int final_xpos, int final_ypos )
+bool Pawn::IsMovementPossible(  Vect2i finalPos )
 {
-    if( final_xpos >= 0 && final_ypos >= 0 && final_xpos < 8 && final_ypos < 8 && alive )
+    if( finalPos.X >= 0 && finalPos.Y >= 0 && finalPos.X < 8 && finalPos.Y < 8 && alive )
     {
-        int x_movement = final_xpos - xpos;
-        int y_movement = ypos - final_ypos;
+        int x_movement = finalPos.X - Bpos.X;
+        int y_movement = Bpos.X - finalPos.Y;
 
         if( y_movement == 1 )
         {
             if (x_movement == 0 || ( x_movement == 1 && enemy_diagonal_right ) || ( x_movement == -1 && enemy_diagonal_right ))
                 return true;
         }
-        if( ypos == 1 )
+        if( Bpos.Y == 1 )
         {
             if( y_movement == 2 && x_movement == 0 )
             {

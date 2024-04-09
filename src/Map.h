@@ -2,40 +2,39 @@
 
 #include "game.hpp"
 #include "GameObject.h"
-#include "Piece.h"
-#include "Pawn.h"
-#include "../header/Rook.h"
+#include "ChessPieces/Piece.h"
+#include "ChessPieces/Pawn.h"
+#include "ChessPieces/Knight.h"
+#include "ChessPieces/Bishop.h"
+#include "ChessPieces/Queen.h"
+#include "ChessPieces/King.h"
+#include "ChessPieces/Rook.h"
 
 class Map
 {
 public:
 
-    Map();
+    Map(int arr[8][8]);
     ~Map();
 
-        void LoadMap( int arr[8][8] );
+        void LoadMap(int arr[8][8]);
         void DrawMap();
+        void Update();
         void Delete();
+        int GetLastMap();
         std::vector<Piece*>whitePieces;
+        std::vector<Piece*>blackPieces;
+        std::vector<GameObject*>whitePiecesRender;
+        std::vector<GameObject*>blackPiecesRender;
+
+        int map_[8][8];
+        int last_map[8][8];
 
 
     private:
         SDL_Rect src, dest;
-
-        GameObject* PawnW = new GameObject("assets/w_pawn_png_1024px.png");
-        GameObject* KnightW = new GameObject("assets/w_knight_png_1024px.png");
-        GameObject* BishopW = new GameObject("assets/w_bishop_png_1024px.png");
-        GameObject* RookW = new GameObject("assets/w_rook_png_1024px.png");
-        GameObject* QueenW = new GameObject("assets/w_queen_png_1024px.png");
-        GameObject* KingW = new GameObject("assets/w_king_png_1024px.png");
-        GameObject* PawnB = new GameObject("assets/b_pawn_png_1024px.png");
-        GameObject* KnightB = new GameObject("assets/b_knight_png_1024px.png");
-        GameObject* BishopB = new GameObject("assets/b_bishop_png_1024px.png");
-        GameObject* RookB = new GameObject("assets/b_rook_png_1024px.png");
-        GameObject* QueenB = new GameObject("assets/b_queen_png_1024px.png");
-        GameObject* KingB = new GameObject("assets/b_king_png_1024px.png");
-
-        int map_[8][8];
+        bool isWhite = true;
+        
 
 
 };

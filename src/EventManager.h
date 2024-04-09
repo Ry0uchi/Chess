@@ -17,6 +17,8 @@ public:
 
     void Listen();
 
+    bool isRunning(bool gameRunning);
+
     bool isKeyDown(SDL_Scancode key);
 
     inline const Vect2f GetMousePos() { return m_MouseCurPos; }
@@ -24,6 +26,7 @@ public:
     inline const Vect2f GetMouseMotion() { return m_MouseCurPos - m_MousePrevPos; }
 
 private:
+
     //keyboard events
     void KeyUp();
     void KeyDown();
@@ -34,14 +37,16 @@ private:
     void MouseDown(SDL_Event& event);
 
 private:
+
+    bool gameRunning = true;
+
     //keyboard
     const Uint8* m_KeyBoard;
 
     //mouse
-    Vect2f m_MouseCurPos;
-    Vect2f m_MousePrevPos;
+    Vect2f m_MouseCurPos = {};
+    Vect2f m_MousePrevPos = {};
 
     std::vector<bool> m_MouseButton;
 
-    static EventManager* s_Instance;
 };

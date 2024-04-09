@@ -1,9 +1,6 @@
 #include "Map.h"
 #include "TextureManager.h"
 
-const int xBoard = 385 + 20*3/4;
-const int yBoard = 105 + 22*3/4;
-
 int Chess[8][8] = {
     { 5, 4, 3, 2, 1, 3, 4, 5 },
     { 6, 6, 6, 6, 6, 6, 6, 6 },
@@ -15,93 +12,114 @@ int Chess[8][8] = {
     {-5,-4,-3,-2,-1,-3,-4,-5 }
 };
 
-Map::Map()
+void Map::Map( int arr[8][8] )
 {
-    
-    LoadMap( Chess );
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            map_[i][j] = arr[i][j];
+        }
+    }
+};
 
-    dest.x = xBoard;
-    dest.y = yBoard;
-
-
-    int type = 0;
-    for( int row = 0; row < 8; ++row )
-   {
-       for( int colum = 0; colum < 8; ++colum )
-       {
-           type = map_[row][colum];
-           dest.x = colum * 60 + xBoard + 5;
-           dest.y = row * 60 + yBoard + 5;
-
-           switch( type )
-           {
+Map::LoadMap( int map_[8][8] )
+{
+    LoadMap(Chess);
+    Vect2f position;
+    int wP = 0, bP = 0, wR = 8, bR = 8, wK = 10, bK = 10, wB = 12, bB = 12;
+    for (auto row = 0; row < 8; ++row)
+    {
+        for (auto collumn = 0; collumn < 8; ++collumn)
+        {
+            position = (xBoard + collumn*60, yBoard + row*60);
+            switch (map_[row][collumn])
+            {
             case -6:
-                whitePieces.push_back(new Pawn( true, dest.x - xBoard - 5, dest.y - yBoard - 5));
+                whitePieces[wP] = new Pawn(true, position);
+                whitePiecesRender[wP] = new GameObject("assets/w_pawn_png_1024px.png");
+                wP++;
                 break;
             case -5:
-                whitePieces.push_back(new Rook( true, dest.x - xBoard - 5, dest.y - yBoard - 5));
+                whitePieces[wR] = new Rook(true, position);
+                whitePiecesRender[wR] = new GameObject("assets/w_rook_png_1024px.png");
+                wR++;
                 break;
-            /*case -4:
-                TextureManager::Draw( KnightW, src, dest );
+            case -4:   
+                whitePieces[wK] = new Knight(true, position);
+                whitePiecesRender[wK] = new GameObject("assets/w_knight_png_1024px.png");
+                wK++;
                 break;
             case -3:
-                TextureManager::Draw( BishopW, src, dest );
+                whitePieces[wB] = new Bishop(true, position);
+                whitePiecesRender[wB] = new GameObject("assets/w_bishop_png_1024px.png");
+                wB++;
                 break;
             case -2:
-                TextureManager::Draw( QueenW, src, dest );
+                whitePieces[14] = new Queen(true, position);
+                whitePiecesRender[14] = new GameObject("assets/w_queen_png_1024px.png");
                 break;
             case -1:
-                TextureManager::Draw( KingW, src, dest );
+                whitePieces[15] = new King(true, position);
+                whitePiecesRender[15] = new GameObject("assets/w_king_png_1024px.png");
                 break;
             case 6:
-                TextureManager::Draw( PawnB, src, dest );
+                blackPieces[bP] = new Pawn(false, position);
+                blackPiecesRender[bP] = new GameObject("assets/b_pawn_png_1024px.png");
+                bP++;
                 break;
             case 5:
-                TextureManager::Draw( RookB, src, dest );
+                blackPieces[bR] = new Rook(false, position);
+                blackPiecesRender[bR] = new GameObject("assets/b_rook_png_1024px.png");
+                bR++;
                 break;
             case 4:
-                TextureManager::Draw( KnightB, src, dest );
+                blackPieces[bK] = new Knight(false, position);
+                blackPiecesRender[bK] = new GameObject("assets/b_knight_png_1024px.png");
+                bK++;
                 break;
             case 3:
-                TextureManager::Draw( BishopB, src, dest );
+                blackPieces[bB] = new Bishop(false, position);
+                blackPiecesRender[bB] = new GameObject("assets/b_bishop_png_1024px.png");
+                bB++;
                 break;
             case 2:
-                TextureManager::Draw( QueenB, src, dest );
+                blackPieces[14] = new Queen(false, position);
+                blackPiecesRender[14] = new GameObject("assets/b_queen_png_1024px.png");
                 break;
             case 1:
-                TextureManager::Draw( KingB, src, dest );
-                break;*/
-           }
-
-       }
-   }
+                blackPieces[15] = new King(false, position);
+                blackPiecesRender[15] = new GameObject("assets/b_king_png_1024px.png");
+                break;
+            }
+        }
+    }
 }
 
-void Map::LoadMap( int arr[8][8] )
+
+void Map::Update()
 {
-   for( int row = 0; row < 8; ++row )
-   {
-       for( int colum = 0; colum < 8; ++colum )
-       {
-           map_[row][colum] = arr[row][colum];
-       }
-   }
+    for (int i = 0; i < 16; ++i)
+    {
+        whitePiecesRender[i]->UpdateChessPiece( whitePieces[i]->pos.X + 5, whitePieces[i]->pos.Y + 5 );
+        //std::cout << "ok draw\n";
+        blackPiecesRender[i]->UpdateChessPiece( blackPieces[i]->pos.X + 5, blackPieces[i]->pos.Y + 5 );
+    }
+}
+
+int Map::GetLastMap()
+{
+    return last_map;
 }
 
 void Map::DrawMap()
 {
 
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < 16; ++i)
     {
-        dest.x = whitePieces[i]->x + 5;
-        dest.y = whitePieces[i]->y + 5;
-        PawnW->UpdateChessPiece( dest.x, dest.y );
-    }
-    for (int i = 8; i < 10; ++i)
-    {
-        dest.x = whitePieces[i]->xpos* 60 + 5 + xBoard;
-        dest.y = whitePieces[i]->ypos* 60 + 5 + yBoard;
-        RookW->UpdateChessPiece( dest.x, dest.y );
+        whitePiecesRender[i]->Render();
+        blackPiecesRender[i]->Render();
+        //std::cout << "Chess pieces drawn\n";
     }
 }
 
@@ -109,4 +127,10 @@ void Map::Delete()
 {
     whitePieces.clear();
     whitePieces.shrink_to_fit();
+    blackPieces.clear();
+    blackPieces.shrink_to_fit();
+    whitePiecesRender.clear();
+    whitePiecesRender.shrink_to_fit();
+    blackPiecesRender.clear();
+    blackPiecesRender.shrink_to_fit();
 }
