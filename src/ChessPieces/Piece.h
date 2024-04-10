@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include "../Vect2D.h"
+#include "../GameObject.h"
 
 enum class PieceName {Empty , Pawn , Knight , Bishop , Rook , Queen , King};
 
@@ -16,8 +17,11 @@ public:
     bool isWhite = false;
     bool alive = false;
     Vect2i Bpos;
-    int value = -1;
     Vect2f pos;
+    int value = -1;
+    GameObject* image;
+    bool isChoose = false;
+
 
     PieceName GetName();
 

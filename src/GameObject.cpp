@@ -32,6 +32,11 @@ void GameObject::UpdateChessPiece(int xpos, int ypos)
     destRect.h = 50;
 }
 
+SDL_bool GameObject::PointInRect(const SDL_Point* p)
+{
+    return SDL_PointInRect(p, &destRect);
+}
+
 void GameObject::Render()
 {
     SDL_RenderCopy( game::renderer, objTexture, &srcRect, &destRect );

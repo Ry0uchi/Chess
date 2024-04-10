@@ -8,6 +8,7 @@ Bishop::Bishop( bool isWhite, Vect2f pos )
     Bpos.X = static_cast<int>((pos.X - xBoard) / 60);
     Bpos.Y = static_cast<int>((pos.Y - yBoard) / 60);
     alive = true;
+    image = new GameObject( isWhite ? "assets/w_bishop_png_1024px.png" : "assets/b_bishop_png_1024px.png" );
     value = 3;
 }
 Bishop::~Bishop()

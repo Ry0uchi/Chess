@@ -7,6 +7,7 @@ King::King( bool isWhite, Vect2f pos)
     this->pos = pos;
     Bpos.X = static_cast<int>((pos.X - xBoard) / 60);
     Bpos.Y = static_cast<int>((pos.Y - yBoard) / 60);
+    image = new GameObject( isWhite ? "assets/w_king_png_1024px.png" : "assets/b_king_png_1024px.png" );
     alive = true;
     value = 10;
 }

@@ -4,9 +4,9 @@
 
 enum MouseButtons
 {
-    LEFT = 0,
-    MIDDLE = 1,
-    RIGHT = 2
+    LEFT = 1,
+    MIDDLE = 2,
+    RIGHT = 3
 };
 
 class EventManager
@@ -17,12 +17,18 @@ public:
 
     void Listen();
 
-    bool isRunning(bool gameRunning);
+    bool isRunning();
 
     bool isKeyDown(SDL_Scancode key);
 
+    bool isSelected();
+
+    void SetSelected(bool selected);
+
     inline const Vect2f GetMousePos() { return m_MouseCurPos; }
-    inline bool MouseButtonDown(MouseButtons button) { return m_MouseButton[button]; }
+    inline bool MouseButtonDown(MouseButtons button) {
+        return m_MouseButton[button];
+    }
     inline const Vect2f GetMouseMotion() { return m_MouseCurPos - m_MousePrevPos; }
 
 private:
@@ -39,6 +45,7 @@ private:
 private:
 
     bool gameRunning = true;
+    bool selected = false;
 
     //keyboard
     const Uint8* m_KeyBoard;

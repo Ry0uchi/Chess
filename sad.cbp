@@ -47,6 +47,7 @@
 		<Unit filename="src/ChessPieces/Rook.h" />
 		<Unit filename="src/EventManager.cpp" />
 		<Unit filename="src/EventManager.h" />
+		<Unit filename="src/Event/GeneralEvent.h" />
 		<Unit filename="src/GameObject.cpp" />
 		<Unit filename="src/GameObject.h" />
 		<Unit filename="src/Map.cpp" />

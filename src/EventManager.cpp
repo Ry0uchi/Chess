@@ -6,7 +6,7 @@ EventManager::EventManager()
     m_KeyBoard = SDL_GetKeyboardState(nullptr);
 
     // mouse
-    m_MouseButton = {false, false, false};
+    m_MouseButton = {false, false, false, false};
 }
 
 EventManager::~EventManager()
@@ -20,10 +20,10 @@ void EventManager::Listen()
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        std::cout<<"event ongoing\n";
+        //std::cout<<"event ongoing\n";
         switch (event.type)
         {
-        case SDL_QUIT: gameRunning = false; isRunning(gameRunning); break;
+        case SDL_QUIT: gameRunning = false; isRunning(); break;
         case SDL_KEYDOWN:  KeyDown(); break;
         case SDL_KEYUP:  KeyUp(); break;
         case SDL_MOUSEMOTION:  MouseMotion(event); break;
@@ -34,9 +34,19 @@ void EventManager::Listen()
 }
 
 
-bool EventManager::isRunning(bool gameRunning)
+bool EventManager::isRunning()
 {
     return gameRunning;
+}
+
+bool EventManager::isSelected()
+{
+    return selected;
+}
+
+void EventManager::SetSelected(bool selected)
+{
+    this->selected = selected;
 }
 
 // keyboard
@@ -66,11 +76,15 @@ void EventManager::MouseMotion(SDL_Event& event)
 
 void EventManager::MouseUp(SDL_Event& event)
 {
+    std::cout<<"Mouse Up\n";
+          //   <<(int)event.button.button<<"\n";
     m_MouseButton[event.button.button] = false;
 }
 
 void EventManager::MouseDown(SDL_Event& event)
 {
-    m_MouseButton[event.button.button] = true;
+    std::cout<<"Mouse Down\n";
+            //<<(int)event.button.button<<"\n";
+    m_MouseButton[(int)event.button.button] = true;
 }
 
