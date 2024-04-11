@@ -19,14 +19,14 @@ bool Pawn::IsMovementPossible(  Vect2i finalPos )
     if( finalPos.X >= 0 && finalPos.Y >= 0 && finalPos.X < 8 && finalPos.Y < 8 && alive )
     {
         int x_movement = finalPos.X - Bpos.X;
-        int y_movement = Bpos.X - finalPos.Y;
+        int y_movement = Bpos.Y - finalPos.Y;
 
         if( y_movement == 1 )
         {
             if (x_movement == 0 || ( x_movement == 1 && enemy_diagonal_right ) || ( x_movement == -1 && enemy_diagonal_right ))
                 return true;
         }
-        if( Bpos.Y == 1 )
+        if( (Bpos.Y == 6 && isWhite) || (Bpos.Y == 1 && !isWhite))
         {
             if( y_movement == 2 && x_movement == 0 )
             {

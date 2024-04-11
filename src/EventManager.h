@@ -25,7 +25,12 @@ public:
 
     void SetSelected(bool selected);
 
+    void SetMousePrevPos() { m_MousePrevPos = m_MouseCurPos; }
+
     inline const Vect2f GetMousePos() { return m_MouseCurPos; }
+
+    inline const Vect2f GetMousePrevPos() { return m_MousePrevPos; }
+
     inline bool MouseButtonDown(MouseButtons button) {
         return m_MouseButton[button];
     }

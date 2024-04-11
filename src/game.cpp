@@ -64,6 +64,8 @@ void game::update()
 {
     SDL_Point Mouse;
     SDL_Rect destRect;
+    Vect2f pos = m_Event->GetMousePos();
+    Vect2i Bpos = Vect2i((pos.X - xBoard) / CELL_SIZE, (pos.Y - yBoard) / CELL_SIZE);
     if (m_Event->isKeyDown(SDL_SCANCODE_ESCAPE))
     {
         isRunning = false;
@@ -71,8 +73,7 @@ void game::update()
     else if(m_Event->MouseButtonDown(LEFT))
     {
         //std::cout<<"Run!\n";
-        Vect2f pos = m_Event->GetMousePos();
-        Vect2i Bpos = Vect2i((pos.X - xBoard) / CELL_SIZE, (pos.Y - yBoard) / CELL_SIZE);
+        
         
         SDL_GetMouseState(&Mouse.x, &Mouse.y);
         //std::cout<<Mouse.x<<" "<<Mouse.y<<"\n";
@@ -80,15 +81,16 @@ void game::update()
         {
             if (!m_Event->isSelected())
             {
-                std::cout<<"Selecting....\n";
+                //std::cout<<"Selecting....\n";
                 for (auto piece : m_Map->whitePieces)
                 {
                 destRect = piece->image->GetDestRect();
                 if(piece->image->PointInRect(&Mouse))
                     {
                     piece->image->UpdateChessPiece(pos.X - 25, pos.Y -25);
-                    piece->SetPosition(pos.X - 25, pos.Y - 25);
-                    std::cout<<"Selected!\n";
+                    std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
+                  //  piece->SetPosition(pos.X - 25, pos.Y - 25);
+                   // std::cout<<"Selected!\n";
                     m_Event->SetSelected(true);
                     piece->isChoose = true;
                     break;
@@ -117,8 +119,9 @@ void game::update()
                     if(piece->isChoose)
                     {
                         piece->image->UpdateChessPiece(pos.X - 25, pos.Y -25);
-                        piece->SetPosition(pos.X - 25, pos.Y - 25);
-                        std::cout<<"Selected!\n";
+                        //piece->SetPosition(pos.X - 25, pos.Y - 25);
+                        std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
+                        //std::cout<<"Selected!\n";
                         break;
                     }
                 }
@@ -138,21 +141,32 @@ void game::update()
         else if(!m_Event->MouseButtonDown(LEFT))
         {
             //eating piece
-            
             for (auto piece : m_Map->whitePieces)
             {   
                 if (piece->isChoose)
                 {   
-                    piece->SetPosition(piece->Bpos.X * CELL_SIZE + xBoard, piece->Bpos.Y * CELL_SIZE + yBoard);
-                    for (auto enemy : m_Map->blackPieces)
+                    if (piece->IsMovementPossible(Bpos) && m_Map->IsPlaceClear(Bpos, piece->isWhite) && (piece->name == PieceName::Knight || piece->name == PieceName::Pawn || m_Map->IsPathClear(piece->Bpos, Bpos)))
                     {
-                        if (enemy->Bpos == piece->Bpos)
+                        piece->Bpos = Bpos;
+                        for (auto enemy : m_Map->blackPieces)
                         {
-                            enemy->SetDead();
+                            if (enemy->Bpos == piece->Bpos)
+                            {
+                                enemy->SetDead();
+                            }
                         }
+                        std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
+                        piece->SetPosition(piece->Bpos.X * CELL_SIZE + xBoard, piece->Bpos.Y * CELL_SIZE + yBoard);
+                       
+                        piece->image->UpdateChessPiece(piece->pos.X + 5, piece->pos.Y + 5);
+                        piece->isChoose = false;
                     }
-                    piece->image->UpdateChessPiece(piece->pos.X + 5, piece->pos.Y + 5);
-                    piece->isChoose = false;
+                    else
+                    {
+                        piece->SetPosition(piece->Bpos.X * CELL_SIZE + xBoard, piece->Bpos.Y * CELL_SIZE + yBoard);
+                        piece->image->UpdateChessPiece(piece->pos.X + 5, piece->pos.Y + 5);
+                        piece->isChoose = false;
+                    }
                 }
             }
             for (auto piece : m_Map->blackPieces)
@@ -172,7 +186,7 @@ void game::update()
                 }
             }
             m_Event->SetSelected(false);
-            std::cout<<"Up!\n";
+            //std::cout<<"Up!\n";
         }
     
     Board->UpdateBoard(640-255, 360-255);

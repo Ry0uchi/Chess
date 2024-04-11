@@ -16,7 +16,7 @@ EventManager::~EventManager()
 
 void EventManager::Listen()
 {
-    m_MousePrevPos = m_MouseCurPos;
+
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
@@ -76,14 +76,14 @@ void EventManager::MouseMotion(SDL_Event& event)
 
 void EventManager::MouseUp(SDL_Event& event)
 {
-    std::cout<<"Mouse Up\n";
+    //std::cout<<"Mouse Up\n";
           //   <<(int)event.button.button<<"\n";
     m_MouseButton[event.button.button] = false;
 }
 
 void EventManager::MouseDown(SDL_Event& event)
 {
-    std::cout<<"Mouse Down\n";
+   // std::cout<<"Mouse Down\n";
             //<<(int)event.button.button<<"\n";
     m_MouseButton[(int)event.button.button] = true;
 }

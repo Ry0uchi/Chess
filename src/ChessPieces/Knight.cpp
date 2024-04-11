@@ -23,8 +23,10 @@ bool Knight::IsMovementPossible( Vect2i finalPos )
 
         if( (x_movement == 2 && y_movement == 1) || (x_movement == 1 && y_movement == 2) )
         {
+            std::cout<<"Knight Movement Possible\n";
             return true;
         }
     }
+    std::cout<<"Knight Movement Not Possible\n";
     return false;
 }

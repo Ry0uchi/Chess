@@ -93,17 +93,221 @@ Map::Map()
                 //King
     position = {xBoard + 60*4, isWhite ? yBoard : yBoard + 60*7};
     blackPieces.push_back(new King(false, position));
-}
 
-
-void Map::Update()
-{
     for (int i = 0; i < 16; ++i)
     {
         whitePieces[i]->image->UpdateChessPiece( whitePieces[i]->pos.X + 5, whitePieces[i]->pos.Y + 5 );
         //std::cout << "ok draw\n";
         blackPieces[i]->image->UpdateChessPiece( blackPieces[i]->pos.X + 5, blackPieces[i]->pos.Y + 5 );
     }
+}
+
+
+void Map::Update()
+{
+    
+}
+
+bool Map::IsPathClear(Vect2i start, Vect2i end)
+{
+    int Bx = end.X - start.X;
+    int By = end.Y - start.Y;
+    if (Bx == 0)
+    {
+        if (By < 0)
+        {
+            for (int i = start.Y - 1; i > end.Y; --i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X, i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X, i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = start.Y + 1; i < end.Y; ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X, i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X, i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    else if (By == 0)
+    {
+        if (Bx < 0)
+        {
+            for (int i = start.X - 1; i > end.X; --i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(i, start.Y))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(i, start.Y))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = start.X + 1; i < end.X; ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(i, start.Y))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(i, start.Y))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    else if (abs(Bx) == abs(By))
+    {
+        if (Bx < 0 && By < 0)
+        {
+            for (int i = 1; i < abs(Bx); ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X - i, start.Y - i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X - i, start.Y - i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (Bx < 0 && By > 0)
+        {
+            for (int i = 1; i < abs(Bx); ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X - i, start.Y + i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X - i, start.Y + i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (Bx > 0 && By < 0)
+        {
+            for (int i = 1; i < abs(Bx); ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X + i, start.Y - i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X + i, start.Y - i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 1; i < abs(Bx); ++i)
+            {
+                for (auto piece : whitePieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X + i, start.Y + i))
+                    {
+                        return false;
+                    }
+                }
+                for (auto piece : blackPieces)
+                {
+                    if (piece->Bpos == Vect2i(start.X + i, start.Y + i))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+
+}
+
+bool Map::IsPlaceClear (Vect2i pos, bool isWhite)
+{
+    if (isWhite)
+    {
+        for (auto piece : whitePieces)
+        {
+            if (piece->Bpos == pos)
+            {
+                return false;
+            }
+        }
+    }
+    else
+    {
+        for (auto piece : blackPieces)
+        {
+            if (piece->Bpos == pos)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 void Map::DrawMap()

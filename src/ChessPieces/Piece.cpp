@@ -31,8 +31,8 @@ void Piece::SetPosition( int x, int y )
   {
     pos.X = x;
     pos.Y = y;
-    Bpos.X = (int)(x - xBoard + 30) / 60;
-    Bpos.Y = (int)(y - yBoard + 30) / 60;
+    Bpos.X = (int)(x - xBoard) / 60;
+    Bpos.Y = (int)(y - yBoard) / 60;
   }
 }
 

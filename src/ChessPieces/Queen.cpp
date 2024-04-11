@@ -25,7 +25,10 @@ bool Queen::IsMovementPossible( Vect2i finalPos )
         {
             return true;
         }
-        return false;
+        else if((x_movement == 0 && y_movement != 0) || (y_movement == 0 && x_movement != 0))
+        {
+            return true;
+        }
     }
     return false;
 }

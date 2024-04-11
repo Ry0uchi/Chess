@@ -21,6 +21,8 @@ public:
         void DrawMap();
         void Update();
         void Delete();
+        bool IsPathClear(Vect2i start, Vect2i end);
+        bool IsPlaceClear(Vect2i pos, bool isWhite);
         std::vector<Piece*>whitePieces;
         std::vector<Piece*>blackPieces;
 
