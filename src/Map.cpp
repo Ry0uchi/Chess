@@ -1,26 +1,11 @@
 #include "Map.h"
 #include "TextureManager.h"
 
-int Chess[8][8] = {
-    { 5, 4, 3, 2, 1, 3, 4, 5 },
-    { 6, 6, 6, 6, 6, 6, 6, 6 },
-    { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-    { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-    { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-    { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-    {-6,-6,-6,-6,-6,-6,-6,-6 },
-    {-5,-4,-3,-2,-1,-3,-4,-5 }
-};
+
 
 void Map::LoadMap()
 {
-    for (int i = 0; i < 8; ++i)
-    {
-        for (int j = 0; j < 8; ++j)
-        {
-            map_[i][j] = Chess[i][j];
-        }
-    }
+    
 };
 
 Map::Map()
@@ -102,10 +87,9 @@ Map::Map()
     }
 }
 
-
-void Map::Update()
+Map::~Map()
 {
-    
+    Delete();
 }
 
 bool Map::IsPathClear(Vect2i start, Vect2i end)
@@ -118,19 +102,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = start.Y - 1; i > end.Y; --i)
             {
-                for (auto piece : whitePieces)
+                if (Chess[start.X][i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X, i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X, i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -138,19 +112,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = start.Y + 1; i < end.Y; ++i)
             {
-                for (auto piece : whitePieces)
+                if (Chess[start.X][i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X, i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X, i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -161,19 +125,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = start.X - 1; i > end.X; --i)
             {
-                for (auto piece : whitePieces)
+                if (Chess[i][start.Y] != 0)
                 {
-                    if (piece->Bpos == Vect2i(i, start.Y))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(i, start.Y))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -181,19 +135,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = start.X + 1; i < end.X; ++i)
             {
-                for (auto piece : whitePieces)
+                if(Chess[i][start.Y] != 0)
                 {
-                    if (piece->Bpos == Vect2i(i, start.Y))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(i, start.Y))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -204,19 +148,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = 1; i < abs(Bx); ++i)
             {
-                for (auto piece : whitePieces)
+                if(Chess[start.X - i][start.Y - i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X - i, start.Y - i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X - i, start.Y - i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -224,19 +158,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = 1; i < abs(Bx); ++i)
             {
-                for (auto piece : whitePieces)
+                if(Chess[start.X - i][start.Y + i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X - i, start.Y + i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X - i, start.Y + i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -244,19 +168,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = 1; i < abs(Bx); ++i)
             {
-                for (auto piece : whitePieces)
+                if(Chess[start.X + i][start.Y - i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X + i, start.Y - i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X + i, start.Y - i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -264,19 +178,9 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
         {
             for (int i = 1; i < abs(Bx); ++i)
             {
-                for (auto piece : whitePieces)
+                if(Chess[start.X + i][start.Y + i] != 0)
                 {
-                    if (piece->Bpos == Vect2i(start.X + i, start.Y + i))
-                    {
-                        return false;
-                    }
-                }
-                for (auto piece : blackPieces)
-                {
-                    if (piece->Bpos == Vect2i(start.X + i, start.Y + i))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
@@ -289,25 +193,84 @@ bool Map::IsPlaceClear (Vect2i pos, bool isWhite)
 {
     if (isWhite)
     {
-        for (auto piece : whitePieces)
+        if(Chess[pos.X][pos.Y] < 0)
         {
-            if (piece->Bpos == pos)
-            {
-                return false;
-            }
+            return false;
         }
     }
     else
     {
-        for (auto piece : blackPieces)
+        if(Chess[pos.X][pos.Y] > 0)
         {
-            if (piece->Bpos == pos)
-            {
-                return false;
-            }
+            return false;
         }
     }
     return true;
+}
+
+void Map::Update()
+{
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            Chess[i][j] = 0;
+        }
+    }
+    for(auto piece : whitePieces)
+    {
+        if(piece->IsAlive())
+        {
+            switch(piece->name)
+            {
+                case PieceName::Pawn:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -6;
+                    break;
+                case PieceName::Rook:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -5;
+                    break;
+                case PieceName::Knight:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -4;
+                    break;
+                case PieceName::Bishop:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -3;
+                    break;
+                case PieceName::Queen:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -2;
+                    break;
+                case PieceName::King:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = -1;
+                    break;
+            }
+        }
+    }
+    for(auto piece : blackPieces)
+    {
+        if(piece->IsAlive())
+        {
+            switch(piece->name)
+            {
+                case PieceName::Pawn:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 6;
+                    break;
+                case PieceName::Rook:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 5;
+                    break;
+                case PieceName::Knight:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 4;
+                    break;
+                case PieceName::Bishop:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 3;
+                    break;
+                case PieceName::Queen:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 2;
+                    break;
+                case PieceName::King:
+                    Chess[piece->Bpos.X][piece->Bpos.Y] = 1;
+                    break;
+            }
+        }
+    }
 }
 
 void Map::DrawMap()
@@ -319,6 +282,18 @@ void Map::DrawMap()
         blackPieces[i]->image->Render();
         //std::cout << "Chess pieces drawn\n";
     }
+}
+
+int Map::SaveGame(int prevGame[8][8])
+{
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            prevGame[i][j] = Chess[i][j];
+        }
+    }
+    return 0;
 }
 
 void Map::Delete()

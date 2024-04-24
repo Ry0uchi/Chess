@@ -21,12 +21,24 @@ public:
         void DrawMap();
         void Update();
         void Delete();
+        int SaveGame(int prevGame[8][8]);
         bool IsPathClear(Vect2i start, Vect2i end);
         bool IsPlaceClear(Vect2i pos, bool isWhite);
+        void SaveBoard();
         std::vector<Piece*>whitePieces;
         std::vector<Piece*>blackPieces;
 
-        int map_[8][8];
+        int Chess[8][8] = 
+        {
+            { 5, 4, 3, 2, 1, 3, 4, 5 },
+            { 6, 6, 6, 6, 6, 6, 6, 6 },
+            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+            {-6,-6,-6,-6,-6,-6,-6,-6 },
+            {-5,-4,-3,-2,-1,-3,-4,-5 }
+        };
 
 
     private:

@@ -52,6 +52,8 @@
 		<Unit filename="src/GameObject.h" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/Map.h" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Menu.h" />
 		<Unit filename="src/TextureManager.cpp" />
 		<Unit filename="src/TextureManager.h" />
 		<Unit filename="src/Vect2D.h" />

@@ -3,14 +3,18 @@
 #include "GameObject.h"
 #include "Map.h"
 #include "EventManager.h"
+#include "Menu.h"
 
 const int CELL_SIZE = 60;
 
+Menu* m_Menu;
 EventManager* m_Event;
 GameObject* Board;
 Map* m_Map;
-
 SDL_Renderer* game::renderer = nullptr;
+int prevGame[8][8] = {};
+GameState state = MENU;
+
 
 game::game()
 {}
@@ -50,7 +54,10 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
 
     m_Event = new EventManager();
     Board = new GameObject("assets/Chess_Wood.png");
+    
     m_Map = new Map();
+    m_Menu = new Menu();
+   
 
 }
 
@@ -62,10 +69,12 @@ void game::handleEvents()
 
 void game::update()
 {
+    Board->UpdateBoard(640-255, 360-255);
     SDL_Point Mouse;
     SDL_Rect destRect;
     Vect2f pos = m_Event->GetMousePos();
     Vect2i Bpos = Vect2i((pos.X - xBoard) / CELL_SIZE, (pos.Y - yBoard) / CELL_SIZE);
+    
     if (m_Event->isKeyDown(SDL_SCANCODE_ESCAPE))
     {
         isRunning = false;
@@ -73,8 +82,8 @@ void game::update()
     else if(m_Event->MouseButtonDown(LEFT))
     {
         //std::cout<<"Run!\n";
-        
-        
+
+
         SDL_GetMouseState(&Mouse.x, &Mouse.y);
         //std::cout<<Mouse.x<<" "<<Mouse.y<<"\n";
         if (Bpos.X >= 0 && Bpos.X < 8 && Bpos.Y >= 0 && Bpos.Y < 8)
@@ -138,14 +147,14 @@ void game::update()
             }
         }
     }
-        else if(!m_Event->MouseButtonDown(LEFT))
+    else if(!m_Event->MouseButtonDown(LEFT))
         {
             //eating piece
             for (auto piece : m_Map->whitePieces)
-            {   
+            {
                 if (piece->isChoose)
-                {   
-                    if (piece->IsMovementPossible(Bpos) && m_Map->IsPlaceClear(Bpos, piece->isWhite) && (piece->name == PieceName::Knight || piece->name == PieceName::Pawn || m_Map->IsPathClear(piece->Bpos, Bpos)))
+                {
+                    if (piece->IsMovementPossible(Bpos) && m_Map->IsPlaceClear(Bpos, piece->isWhite) && (piece->GetName() == PieceName::Knight || m_Map->IsPathClear(piece->Bpos, Bpos)))
                     {
                         piece->Bpos = Bpos;
                         for (auto enemy : m_Map->blackPieces)
@@ -157,7 +166,7 @@ void game::update()
                         }
                         std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
                         piece->SetPosition(piece->Bpos.X * CELL_SIZE + xBoard, piece->Bpos.Y * CELL_SIZE + yBoard);
-                       
+
                         piece->image->UpdateChessPiece(piece->pos.X + 5, piece->pos.Y + 5);
                         piece->isChoose = false;
                     }
@@ -189,14 +198,17 @@ void game::update()
             //std::cout<<"Up!\n";
         }
     
-    Board->UpdateBoard(640-255, 360-255);
     m_Map->Update();
 }
 void game::render()
 {
     SDL_RenderClear ( renderer );
-    Board->Render();
-    m_Map->DrawMap();
+    
+    if(state == GameState::MENU) m_Menu->DrawMenu();
+    else if(state == GameState::GAME){
+        Board->Render();
+        m_Map->DrawMap();
+    }
     //add stuff to render
     SDL_RenderPresent( renderer );
 }

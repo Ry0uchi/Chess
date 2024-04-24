@@ -10,6 +10,13 @@
 #include <math.h>
 #include <string>
 
+enum GameState
+{
+    MENU,
+    GAME,
+    END
+};
+
 class game
 {
 public:
