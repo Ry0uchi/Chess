@@ -37,16 +37,16 @@ void GameObject::UpdateChessPiece(int xpos, int ypos)
     destRect.h = 50;
 }
 
-void GameObject::UpdateButton(int xsrc, int ysrc, int xdect, int ydest)
+void GameObject::UpdateButton(const int& xsrc, const int& ysrc, const int& xdect, const int& ydest)
 {
-    srcRect.h = 229;
-    srcRect.w = 104;
+    srcRect.h = 104;
+    srcRect.w = 229;
     srcRect.x = xsrc;
     srcRect.y = ysrc;
 
     destRect.x = xdect;
     destRect.y = ydest;
-    destRect.w = 229 * (70/104);
+    destRect.w = 155;
     destRect.h = 70;
 }
 

@@ -8,7 +8,7 @@ private:
 
 
 public:
-    Bishop(bool, Vect2f);
+    Bishop(bool, Vect2i);
     ~Bishop();
 
     using Piece::GetName;

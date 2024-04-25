@@ -11,9 +11,10 @@ public:
     void UpdateBoard(int xpos, int ypos);
     void Render();
     void UpdateChessPiece(int xpos, int ypos);
-    void UpdateButton(int xsrc, int ysrc, int xdect, int ydest);
+    void UpdateButton(const int& xsrc, const int& ysrc, const int& xdect, const int& ydest);
     void UpdateScreen();
-    SDL_Rect GetDestRect() { return destRect; }
+    SDL_Rect GetDestRect() {
+         return destRect; }
     SDL_bool PointInRect(const SDL_Point* p);
 
 private:

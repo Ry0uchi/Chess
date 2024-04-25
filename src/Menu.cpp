@@ -3,9 +3,9 @@
 Menu::Menu()
 {
     m_Menu->UpdateScreen();
-    NewGameButton->UpdateButton(505, 160, 725, 470);
-    ExitButton->UpdateButton(20, 160, 725 + 155 + 120, 470);
-    ContinueButton->UpdateButton(505, 208, 725+353, 500);
+    NewGameButton->UpdateButton(505, 160, 700, 525);
+    ExitButton->UpdateButton(20, 400, 700 + 165*2, 525);
+    ContinueButton->UpdateButton(505, 280, 700 + 165, 525);
 }
 
 Menu::~Menu()
@@ -19,6 +19,7 @@ Menu::~Menu()
 void Menu::DrawMenu()
 {
     m_Menu->Render();
+
     NewGameButton->Render();
     ExitButton->Render();
     ContinueButton->Render();
@@ -53,5 +54,17 @@ bool Menu::HavePrevGame(int Chess[8][8])
     return true;
 }
 
-
-
+int Menu::NewGame()
+{
+    int Chess[8][8] = {
+        {5, 4, 3, 2, 1, 3, 4, 5},
+        {6, 6, 6, 6, 6, 6, 6, 6},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {-6, -6, -6, -6, -6, -6, -6, -6},
+        {-5, -4, -3, -2, -1, -3, -4, -5}
+    };
+    return Chess[8][8];
+}

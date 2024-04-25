@@ -4,23 +4,25 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 
-
-
 class Menu
 {
-    GameObject* m_Menu = new GameObject("assets/chess-game.png");
-    GameObject* NewGameButton = new GameObject("assets/Button.png");
-    GameObject* ExitButton = new GameObject("assets/Button.png");
-    GameObject* ContinueButton = new GameObject("assets/Button.png");
-    bool prevGame = false;
-
     public:
+    bool havePrevGame = false;
+    GameObject* m_Menu = new GameObject("assets/chess-game.png");
+    GameObject* NewGameButton = new GameObject("assets/button.png");
+    GameObject* ExitButton = new GameObject("assets/button.png");
+    GameObject* ContinueButton = new GameObject("assets/button.png");
+    
+    
+    bool prevGame = false;
     Menu();
     ~Menu();
+    
+    std::vector<GameObject*> m_Buttons = {NewGameButton, ExitButton, ContinueButton};
     void DrawMenu();
-    bool NewGame();
+    int NewGame();
     void Exit();
     void Continue();
+    void SaveGame(int Chess[8][8]);
     bool HavePrevGame(int Chess[8][8]);
-
 };

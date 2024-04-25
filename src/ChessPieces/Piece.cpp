@@ -25,14 +25,11 @@ bool Piece::IsMovementPossible( Vect2i FinalPos )
 }
 
 
-void Piece::SetPosition( int x, int y )
+void Piece::SetPosition( Vect2i Bpos)
 {
   if( alive )
   {
-    pos.X = x;
-    pos.Y = y;
-    Bpos.X = (int)(x - xBoard) / 60;
-    Bpos.Y = (int)(y - yBoard) / 60;
+    this->Bpos = Bpos;
   }
 }
 
@@ -46,10 +43,9 @@ bool Piece::IsAlive()
 void Piece::SetDead()
 {
   alive = false;
-  Bpos.X = -1;
-  Bpos.Y = -1;
-  pos.X = -100;
-  pos.Y = -100;
+  Bpos.X = -100;
+  Bpos.Y = -100;
+  image->UpdateChessPiece(-100, -100);
 }
 
 void Piece::Revive()

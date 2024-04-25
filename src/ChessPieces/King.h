@@ -15,7 +15,7 @@ private:
 
 public:
 
-    King(bool, Vect2f );
+    King(bool, Vect2i );
     ~King();
 
     using Piece::GetName;

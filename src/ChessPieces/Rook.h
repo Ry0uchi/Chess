@@ -12,7 +12,7 @@ private:
     bool enemy_left = false;
 
 public:
-    Rook(bool, Vect2f);
+    Rook(bool, Vect2i);
     ~Rook();
 
     using Piece::GetName;

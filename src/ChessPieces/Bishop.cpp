@@ -1,12 +1,10 @@
 #include "Bishop.h"
 
-Bishop::Bishop( bool isWhite, Vect2f pos )
+Bishop::Bishop( bool isWhite, Vect2i Bpos )
 {
     this->name = PieceName::Bishop;
     this->isWhite = isWhite;
-    this->pos = pos;
-    Bpos.X = static_cast<int>((pos.X - xBoard) / 60);
-    Bpos.Y = static_cast<int>((pos.Y - yBoard) / 60);
+    this->Bpos = Bpos;
     alive = true;
     image = new GameObject( isWhite ? "assets/w_bishop_png_1024px.png" : "assets/b_bishop_png_1024px.png" );
     value = 3;

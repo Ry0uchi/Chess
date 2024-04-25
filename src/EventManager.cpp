@@ -23,7 +23,7 @@ void EventManager::Listen()
         //std::cout<<"event ongoing\n";
         switch (event.type)
         {
-        case SDL_QUIT: gameRunning = false; isRunning(); break;
+        case SDL_QUIT: running = false; break;
         case SDL_KEYDOWN:  KeyDown(); break;
         case SDL_KEYUP:  KeyUp(); break;
         case SDL_MOUSEMOTION:  MouseMotion(event); break;
@@ -36,7 +36,7 @@ void EventManager::Listen()
 
 bool EventManager::isRunning()
 {
-    return gameRunning;
+    return running;
 }
 
 bool EventManager::isSelected()

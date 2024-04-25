@@ -7,7 +7,7 @@ class Knight : public Piece
 private:
 
 public:
-    Knight(bool, Vect2f);
+    Knight(bool, Vect2i);
     ~Knight();
 
     using Piece::GetName;

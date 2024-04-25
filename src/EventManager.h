@@ -48,9 +48,8 @@ private:
     void MouseDown(SDL_Event& event);
 
 private:
-
-    bool gameRunning = true;
     bool selected = false;
+    bool running = true;
 
     //keyboard
     const Uint8* m_KeyBoard;

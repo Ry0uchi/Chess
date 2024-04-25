@@ -22,23 +22,16 @@ public:
         void Update();
         void Delete();
         int SaveGame(int prevGame[8][8]);
-        bool IsPathClear(Vect2i start, Vect2i end);
-        bool IsPlaceClear(Vect2i pos, bool isWhite);
+        bool IsPathClear(const Vect2i&, const Vect2i&);
+        bool IsPlaceClear(const Vect2i&, const bool&);
+        bool IsPawnCrossed(const Vect2i&,const bool&);
+        void NewGame();
         void SaveBoard();
+        void LoadBoard(int prevGame[8][8]);
         std::vector<Piece*>whitePieces;
         std::vector<Piece*>blackPieces;
 
-        int Chess[8][8] = 
-        {
-            { 5, 4, 3, 2, 1, 3, 4, 5 },
-            { 6, 6, 6, 6, 6, 6, 6, 6 },
-            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-            { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
-            {-6,-6,-6,-6,-6,-6,-6,-6 },
-            {-5,-4,-3,-2,-1,-3,-4,-5 }
-        };
+    int Chess[8][8];
 
 
     private:

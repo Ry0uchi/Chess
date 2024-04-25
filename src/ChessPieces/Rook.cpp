@@ -1,13 +1,11 @@
 
 #include "Rook.h"
 
-Rook::Rook( bool isWhite, Vect2f pos )
+Rook::Rook( bool isWhite, Vect2i Bpos )
 {
     this->name = PieceName::Rook;
     this->isWhite = isWhite;
-    this->pos = pos;
-    Bpos.X = static_cast<int>((pos.X - xBoard) / 60);
-    Bpos.Y = static_cast<int>((pos.Y - yBoard) / 60);
+    this->Bpos = Bpos;
     image = new GameObject( isWhite ? "assets/w_rook_png_1024px.png" : "assets/b_rook_png_1024px.png" );
     alive = true;
     value = 5;

@@ -14,7 +14,7 @@ private:
     bool enemy_diagonal_right = false;
 
 public:
-    Queen(bool, Vect2f );
+    Queen(bool, Vect2i);
     ~Queen();
 
     using Piece::GetName;

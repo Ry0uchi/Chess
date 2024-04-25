@@ -3,87 +3,25 @@
 
 
 
-void Map::LoadMap()
-{
-    
-};
-
 Map::Map()
 {
-    Vect2f position = {};
-    std::cout<<isWhite<<"\n";
-    //white pieces:
-        //Pawn
+    int initChess[8][8] = 
+    {
+        { 5, 4, 3, 2, 1, 3, 4, 5 },
+        { 6, 6, 6, 6, 6, 6, 6, 6 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        {-6,-6,-6,-6,-6,-6,-6,-6 },
+        {-5,-4,-3,-2,-1,-3,-4,-5 }
+    };
     for (int i = 0; i < 8; ++i)
     {
-        position = {xBoard + i*60, isWhite ? yBoard + 60*6 : yBoard};
-        whitePieces.push_back(new Pawn(true, position));
-    }
-
-        //Rook
-    position = {xBoard, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Rook(true, position));
-    position = {xBoard + 60*7, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Rook(true, position));
-
-        //Knight
-    position = {xBoard + 60, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Knight(true, position));
-    position = {xBoard + 60*6, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Knight(true, position));
-
-        //Bishop
-    position = {xBoard + 60*2, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Bishop(true, position));
-    position = {xBoard + 60*5, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Bishop(true, position));
-
-        //Queen
-    position = {xBoard + 60*3, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new Queen(true, position));
-
-        //King
-    position = {xBoard + 60*4, isWhite ? yBoard + 60*7 : yBoard};
-    whitePieces.push_back(new King(true, position));
-    //Black pieces:
-        //Pawn
-    for (int i = 0; i < 8; ++i)
-    {
-        position = {xBoard + i*60, isWhite ? yBoard + 60 : yBoard + 60*6};
-        blackPieces.push_back(new Pawn(false, position));
-    }
-
-        //Rook
-    position = {xBoard, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Rook(false, position));
-    position = {xBoard + 60*7, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Rook(false, position));
-
-        //Knight
-    position = {xBoard + 60, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Knight(false, position));
-    position = {xBoard + 60*6, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Knight(false, position));
-
-            //Bishop
-    position = {xBoard + 60*2, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Bishop(false, position));
-    position = {xBoard + 60*5, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Bishop(false, position));
-
-            //Queen
-    position = {xBoard + 60*3, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new Queen(false, position));
-
-                //King
-    position = {xBoard + 60*4, isWhite ? yBoard : yBoard + 60*7};
-    blackPieces.push_back(new King(false, position));
-
-    for (int i = 0; i < 16; ++i)
-    {
-        whitePieces[i]->image->UpdateChessPiece( whitePieces[i]->pos.X + 5, whitePieces[i]->pos.Y + 5 );
-        //std::cout << "ok draw\n";
-        blackPieces[i]->image->UpdateChessPiece( blackPieces[i]->pos.X + 5, blackPieces[i]->pos.Y + 5 );
+        for (int j = 0; j < 8; ++j)
+        {
+            Chess[i][j] = initChess[j][i];
+        }
     }
 }
 
@@ -92,7 +30,78 @@ Map::~Map()
     Delete();
 }
 
-bool Map::IsPathClear(Vect2i start, Vect2i end)
+void Map::LoadMap()
+{
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            std::cout<<Chess[i][j]<<"\n";
+        }
+    }
+    Vect2i Bpos = {};
+    int tmp = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            tmp = Chess[i][j];
+            Bpos.X = i;
+            Bpos.Y = j;
+            switch(tmp){
+                //white pieces
+            case -6:
+                whitePieces.push_back(new Pawn(true, Bpos));
+                break;
+            case -5:
+                whitePieces.push_back(new Rook(true, Bpos));
+                break;
+            case -4:
+                whitePieces.push_back(new Knight(true, Bpos));
+                break;
+            case -3:
+                whitePieces.push_back(new Bishop(true, Bpos));
+                break;
+            case -2:
+                whitePieces.push_back(new Queen(true, Bpos));
+                break;
+            case -1:
+                whitePieces.push_back(new King(true, Bpos));
+                break;
+                //black pieces
+            case 6:
+                blackPieces.push_back(new Pawn(false, Bpos));
+                break;
+            case 5:
+                blackPieces.push_back(new Rook(false, Bpos));
+                break;
+            case 4: 
+                blackPieces.push_back(new Knight(false, Bpos));
+                break;
+            case 3: 
+                blackPieces.push_back(new Bishop(false, Bpos));
+                break;  
+            case 2: 
+                blackPieces.push_back(new Queen(false, Bpos));
+                break;
+            case 1:
+                blackPieces.push_back(new King(false, Bpos));
+                break;
+            }
+
+        }
+    }
+    for (auto piece : whitePieces)
+    {
+        piece->image->UpdateChessPiece( piece->Bpos.X*60 + xBoard + 5, piece->Bpos.Y*60 + yBoard + 5 );
+    }
+    for (auto piece : blackPieces)
+    {
+        piece->image->UpdateChessPiece( piece->Bpos.X*60 + xBoard + 5, piece->Bpos.Y*60 + yBoard + 5 );
+    }
+}
+
+bool Map::IsPathClear(const Vect2i& start, const Vect2i& end)
 {
     int Bx = end.X - start.X;
     int By = end.Y - start.Y;
@@ -189,7 +198,7 @@ bool Map::IsPathClear(Vect2i start, Vect2i end)
 
 }
 
-bool Map::IsPlaceClear (Vect2i pos, bool isWhite)
+bool Map::IsPlaceClear (const Vect2i& pos, const bool& isWhite)
 {
     if (isWhite)
     {
@@ -276,11 +285,13 @@ void Map::Update()
 void Map::DrawMap()
 {
 
-    for (int i = 0; i < 16; ++i)
+    for (auto piece : whitePieces)
     {
-        whitePieces[i]->image->Render();
-        blackPieces[i]->image->Render();
-        //std::cout << "Chess pieces drawn\n";
+        piece->image->Render();
+    }
+    for (auto piece : blackPieces)
+    {
+        piece->image->Render();
     }
 }
 
@@ -293,7 +304,24 @@ int Map::SaveGame(int prevGame[8][8])
             prevGame[i][j] = Chess[i][j];
         }
     }
-    return 0;
+    return prevGame[8][8];
+}
+
+void Map::LoadBoard(int prevGame[8][8])
+{
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            Chess[i][j] = prevGame[i][j];
+        }
+    }
+    LoadMap();
+}
+
+void Map::NewGame()
+{
+    LoadMap();
 }
 
 void Map::Delete()
@@ -302,4 +330,17 @@ void Map::Delete()
     whitePieces.shrink_to_fit();
     blackPieces.clear();
     blackPieces.shrink_to_fit();
+}
+
+bool Map::IsPawnCrossed(const Vect2i& Bpos, const bool& isWhite)
+{
+    if(isWhite && (Chess[Bpos.X+1][Bpos.Y+1] > 0 || Chess[Bpos.X-1][Bpos.Y+1] > 0))
+    {
+        return true;
+    }
+    else if(!isWhite && (Chess[Bpos.X+1][Bpos.Y-1] < 0 || Chess[Bpos.X-1][Bpos.Y-1] < 0))
+    {
+        return true;
+    }
+    return false;
 }

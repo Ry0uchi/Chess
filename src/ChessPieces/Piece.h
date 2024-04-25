@@ -17,7 +17,6 @@ public:
     bool isWhite = false;
     bool alive = false;
     Vect2i Bpos;
-    Vect2f pos;
     int value = -1;
     GameObject* image;
     bool isChoose = false;
@@ -29,7 +28,7 @@ public:
 
     virtual bool IsMovementPossible(Vect2i);
 
-    void SetPosition(int, int);
+    void SetPosition(Vect2i);
 
     bool IsAlive();
     void Revive();
