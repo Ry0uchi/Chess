@@ -2,7 +2,7 @@
 ## Bài tập lớn 2324INT2215_52
 ##### *Đỗ Chí Long - 23020679*
 
-- Video: 
+- Video: https://youtu.be/ktTQBGBmt1E
 
 # Giới thiệu game
 

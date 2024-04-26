@@ -62,7 +62,7 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
         isRunning = false;
     }
 
-    std::ifstream input("Chess2/data.txt");
+    std::ifstream input("src/data.txt");
     std::cout<<"Load data\n";
     for (int i = 0; i < 8; i++)
     {
@@ -111,7 +111,7 @@ void game::handleEvents()
                     m_Map->NewGame();
                     state = GAME;
                     std::ofstream output;
-                    output.open("data.txt", std::ofstream::out | std::ofstream::trunc);
+                    output.open("src/data.txt", std::ofstream::out | std::ofstream::trunc);
                     output.close();
                     break;
                 }
@@ -291,7 +291,7 @@ void game::update()
     if(state == GAME)
         m_Map->Update();
     std::fstream output;
-    output.open("data.txt", std::ios::out | std::ios::trunc);
+    output.open("src/data.txt", std::ios::out | std::ios::trunc);
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
