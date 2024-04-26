@@ -5,6 +5,9 @@
 
 Map::Map()
 {
+    BackButton->UpdateIcon(600, 30, xBoard - 70, yBoard);
+    
+
     int initChess[8][8] = 
     {
         { 5, 4, 3, 2, 1, 3, 4, 5 },
@@ -32,13 +35,10 @@ Map::~Map()
 
 void Map::LoadMap()
 {
-    for (int i = 0; i < 8; ++i)
-    {
-        for (int j = 0; j < 8; ++j)
-        {
-            std::cout<<Chess[i][j]<<"\n";
-        }
-    }
+    whitePieces.clear();
+    blackPieces.clear();
+    whitePieces.shrink_to_fit();
+    blackPieces.shrink_to_fit();
     Vect2i Bpos = {};
     int tmp = 0;
     for (int i = 0; i < 8; ++i)
@@ -293,6 +293,7 @@ void Map::DrawMap()
     {
         piece->image->Render();
     }
+    BackButton->Render();
 }
 
 int Map::SaveGame(int prevGame[8][8])
@@ -321,6 +322,24 @@ void Map::LoadBoard(int prevGame[8][8])
 
 void Map::NewGame()
 {
+    int initChess[8][8] = 
+    {
+        { 5, 4, 3, 2, 1, 3, 4, 5 },
+        { 6, 6, 6, 6, 6, 6, 6, 6 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0 ,0 ,0 ,0 ,0 ,0 },
+        {-6,-6,-6,-6,-6,-6,-6,-6 },
+        {-5,-4,-3,-2,-1,-3,-4,-5 }
+    };
+    for (int i = 0; i < 8; ++i)
+    {
+        for (int j = 0; j < 8; ++j)
+        {
+            Chess[i][j] = initChess[j][i];
+        }
+    }
     LoadMap();
 }
 

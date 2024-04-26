@@ -30,6 +30,7 @@ public:
         void LoadBoard(int prevGame[8][8]);
         std::vector<Piece*>whitePieces;
         std::vector<Piece*>blackPieces;
+        GameObject* BackButton = new GameObject("assets/button.png");
 
     int Chess[8][8];
 

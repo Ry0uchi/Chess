@@ -14,6 +14,9 @@ Map* m_Map;
 SDL_Renderer* game::renderer = nullptr;
 int prevGame[8][8] = {};
 GameState state = MENU;
+Mix_Chunk* Capture = NULL;
+Mix_Chunk* Move = NULL;
+Mix_Chunk* ButtonClick = NULL;
 
 
 game::game()
@@ -44,6 +47,10 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
             SDL_SetRenderDrawColor ( renderer, 255, 255, 255, 255 );
           std::cout << "Renderer Created\n";
         }
+        if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) 
+        {
+            std::cout << "Failed to initialize SDL_mixer: " << Mix_GetError() << std::endl;
+        }
         isRunning = true;
     }
     else
@@ -57,7 +64,10 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
 
     m_Map = new Map();
     m_Menu = new Menu();
-
+    Capture = Mix_LoadWAV("assets/capture.mp3");
+    if(!Capture) std::cout<<"Capture sound not loaded\n";
+    Move = Mix_LoadWAV("assets/move-self.mp3");
+    ButtonClick = Mix_LoadWAV("assets/click-button.mp3");
 
 }
 
@@ -80,9 +90,10 @@ void game::handleEvents()
         {
             if (button->PointInRect(&Mouse))
             {
+                Mix_PlayChannel(-1, ButtonClick, 0);
                 if (button == m_Menu->NewGameButton)
                 {
-                    m_Map->LoadMap();
+                    m_Map->NewGame();
                     state = GAME;
                     break;
                 }
@@ -102,7 +113,7 @@ void game::handleEvents()
                     {
                         std::cout<<"No previous game\n";
                         state = GAME;
-                        m_Map->NewGame();
+                        m_Map->LoadMap();
                     }
                     break;
                 }
@@ -111,6 +122,11 @@ void game::handleEvents()
     }
     else if(m_Event->MouseButtonDown(LEFT) && state == GAME)
     {
+        if (m_Map->BackButton->PointInRect(&Mouse))
+            {
+                Mix_PlayChannel(-1, ButtonClick, 0);
+                state = MENU;
+            }
         //std::cout<<Mouse.x<<" "<<Mouse.y<<"\n";
         if (Bpos.X >= 0 && Bpos.X < 8 && Bpos.Y >= 0 && Bpos.Y < 8)
         {
@@ -178,19 +194,28 @@ void game::handleEvents()
                 {
                     if (piece->IsMovementPossible(Bpos) && m_Map->IsPlaceClear(Bpos, piece->isWhite) && (piece->GetName() == PieceName::Knight || (piece->GetName() == PieceName::Pawn && m_Map->IsPawnCrossed(piece->Bpos, piece->isWhite)) || m_Map->IsPathClear(piece->Bpos, Bpos)))
                     {
-                        for (auto enemy : m_Map->blackPieces)
-                        {
-                            if (enemy->Bpos == Bpos)
-                            {
-                                enemy->SetDead();
-                                break;
-                            }
-                        }
+                        bool* isCapture = new bool(false);
                         std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
                         piece->SetPosition(Bpos);
                         piece->image->UpdateChessPiece(piece->Bpos.X*60 + xBoard + 5, piece->Bpos.Y*60 + yBoard + 5);
                         piece->isChoose = false;
                         *isMove = false;
+                        for (auto enemy : m_Map->blackPieces)
+                        {
+                            if (enemy->Bpos == Bpos)
+                            {
+                                enemy->SetDead();
+                                Mix_PlayChannel(-1, Capture, 0);
+                                *isCapture = true;
+                                break;
+                            }
+                        }
+                        if(!*isCapture)
+                            {
+                                Mix_PlayChannel(-1, Move, 0);
+                                delete isCapture;
+                            }
+                        break;
                     }
                     else
                     {
@@ -209,18 +234,27 @@ void game::handleEvents()
                     {
                         if (piece->IsMovementPossible(Bpos) && m_Map->IsPlaceClear(Bpos, piece->isWhite) && (piece->GetName() == PieceName::Knight || (piece->GetName() == PieceName::Pawn && m_Map->IsPawnCrossed(piece->Bpos, piece->isWhite)) || m_Map->IsPathClear(piece->Bpos, Bpos)))
                         {
+                            bool* isCapture = new bool(false);
+                            std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
+                            piece->SetPosition(Bpos);
+                            piece->image->UpdateChessPiece(piece->Bpos.X*60 + xBoard + 5, piece->Bpos.Y*60 + yBoard + 5);
+                            piece->isChoose = false;
                             for (auto enemy : m_Map->whitePieces)
                             {
                                 if (enemy->Bpos == Bpos)
                                 {
                                     enemy->SetDead();
+                                    Mix_PlayChannel(-1, Capture, 0);
+                                    *isCapture = true;
                                     break;
                                 }
                             }
-                            std::cout<<piece->Bpos.X<<" "<<piece->Bpos.Y<<"\n";
-                            piece->SetPosition(Bpos);
-                            piece->image->UpdateChessPiece(piece->Bpos.X*60 + xBoard + 5, piece->Bpos.Y*60 + yBoard + 5);
-                            piece->isChoose = false;
+                            if(!*isCapture)
+                            {
+                                Mix_PlayChannel(-1, Move, 0);
+                                delete isCapture;
+                            }
+                            break;
                         }
                         else
                         {
@@ -258,8 +292,15 @@ void game::clean()
 {
     SDL_DestroyWindow ( window );
     SDL_DestroyRenderer ( renderer );
+    Mix_FreeChunk(Capture);
+    Mix_FreeChunk(Move);
+    Mix_FreeChunk(ButtonClick);
     m_Map->Delete();
     delete m_Event;
+    delete m_Menu;
+    delete Board;
+    delete m_Map;
+    Mix_CloseAudio();
     SDL_Quit();
     std::cout << "Game Clean\n";
 }

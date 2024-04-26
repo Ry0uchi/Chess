@@ -12,6 +12,7 @@ public:
     void Render();
     void UpdateChessPiece(int xpos, int ypos);
     void UpdateButton(const int& xsrc, const int& ysrc, const int& xdect, const int& ydest);
+    void UpdateIcon(const int& xsrc, const int& ysrc, const int& xdect, const int& ydest);
     void UpdateScreen();
     SDL_Rect GetDestRect() {
          return destRect; }

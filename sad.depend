@@ -104,7 +104,7 @@
 1711296423 c:\users\admin\desktop\sad\src\pawn.h
 	"Piece.h"
 
-1714065487 source:c:\users\admin\desktop\chess2\src\game.cpp
+1714130138 source:c:\users\admin\desktop\chess2\src\game.cpp
 	"TextureManager.h"
 	"game.hpp"
 	"GameObject.h"
@@ -115,9 +115,10 @@
 1710435872 c:\users\admin\desktop\chess2\src\texturemanager.h
 	"game.hpp"
 
-1714055689 c:\users\admin\desktop\chess2\src\game.hpp
+1714128828 c:\users\admin\desktop\chess2\src\game.hpp
 	"SDL.h"
 	"SDL_image.h"
+	"SDL_mixer.h"
 	"Vect2D.h"
 	<iostream>
 	<stdio.h>
@@ -125,10 +126,10 @@
 	<math.h>
 	<string>
 
-1714060542 c:\users\admin\desktop\chess2\src\gameobject.h
+1714128373 c:\users\admin\desktop\chess2\src\gameobject.h
 	"game.hpp"
 
-1714065440 c:\users\admin\desktop\chess2\src\map.h
+1714128077 c:\users\admin\desktop\chess2\src\map.h
 	"game.hpp"
 	"GameObject.h"
 	"ChessPieces/Piece.h"
@@ -142,7 +143,7 @@
 1711444828 c:\users\admin\desktop\chess2\src\piece.h
 	<math.h>
 
-1714048416 source:c:\users\admin\desktop\chess2\src\gameobject.cpp
+1714128364 source:c:\users\admin\desktop\chess2\src\gameobject.cpp
 	"GameObject.h"
 	"TextureManager.h"
 
@@ -151,7 +152,7 @@
 	<iostream>
 	"game.hpp"
 
-1714065446 source:c:\users\admin\desktop\chess2\src\map.cpp
+1714130290 source:c:\users\admin\desktop\chess2\src\map.cpp
 	"Map.h"
 	"TextureManager.h"
 
@@ -202,7 +203,7 @@
 1714057642 c:\users\admin\desktop\chess2\src\chesspieces\knight.h
 	"Piece.h"
 
-1714062599 source:c:\users\admin\desktop\chess2\src\chesspieces\pawn.cpp
+1714065578 source:c:\users\admin\desktop\chess2\src\chesspieces\pawn.cpp
 	"Pawn.h"
 
 1714057663 c:\users\admin\desktop\chess2\src\chesspieces\pawn.h

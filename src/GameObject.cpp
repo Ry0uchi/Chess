@@ -50,6 +50,19 @@ void GameObject::UpdateButton(const int& xsrc, const int& ysrc, const int& xdect
     destRect.h = 70;
 }
 
+void GameObject::UpdateIcon(const int& xsrc, const int& ysrc, const int& xdect, const int& ydest)
+{
+    srcRect.h = 129;
+    srcRect.w = 104;
+    srcRect.x = xsrc;
+    srcRect.y = ysrc;
+
+    destRect.x = xdect;
+    destRect.y = ydest;
+    destRect.w = 50;
+    destRect.h = 62;
+}
+
 void GameObject::UpdateScreen()
 {
     srcRect.h = 720;
