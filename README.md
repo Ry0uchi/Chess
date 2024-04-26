@@ -2,7 +2,7 @@
 ## Bài tập lớn 2324INT2215_52
 ##### *Đỗ Chí Long - 23020679*
 
-- Video: [https://youtu.be/EyTwTOWr5zU](https://youtu.be/EziCb7U9UbU)
+- Video: 
 
 # Giới thiệu game
 
@@ -12,10 +12,9 @@ Chess là môn cờ vua cổ điển, được chơi bởi hai người chơi v�
     * [a. Cách 1: Không bao gồm code.](#a-cách-1-không-bao-gồm-code)
     * [b. Cách 2: Bao gồm code và có thể biên dịch.](#b-cách-2-bao-gồm-code-và-có-thể-biên-dịch)
 - [1. Bắt đầu game](#1bắt-đầu-game)
-- [2. Các thành phần trong game:](#3-các-thành-phần-trong-game)
-- [3. Cách chơi](#4-cách-chơi)
-    * [a. Các loại cây](#acác-loại-cây)
-    * [b. Các loại zombie](#bcác-loại-zombie)
+- [2. Các thành phần trong game:](#2-các-thành-phần-trong-game)
+- [3. Cách chơi](#3-cách-chơi)
+- [4. Chiến thắng và thất bại](#4-chiến-thắng-và-thất-bại)
 - [Về đồ họa của game:](#về-đồ-họa-của-game)
 - [Về source code game](#về-source-code-game)
 
@@ -24,17 +23,14 @@ Chess là môn cờ vua cổ điển, được chơi bởi hai người chơi v�
 ## a. Cách 1: Không bao gồm code.
 
 Tải game (được nén thành .zip) tại link
-sau: https://github.com/nmhienbn/PVZ-Kaito-NMH-Edition/releases/tag/published<br/>
+sau: <br/>
 Cách này tiết kiệm bộ nhớ và thời gian tải đi rất nhiều (khoảng 25MB).<br/>
 Giải nén game vào một thư mục và bật sad.exe lên và chơi.<br/>
 
 ## b. Cách 2: Bao gồm code và có thể biên dịch.
 
 **Bước 1:** Clone repo này về. <br/>
-Hoặc Chọn Code -> Download Zip (Khoảng 90MB)
-
-![image](resources/preview/download.png)
-
+Hoặc Chọn Code -> Download Zip
 - Tất cả code đều nằm trong thư mục src.<br/>
 - Có thể nhảy đến bước 4 để chơi luôn.
 
@@ -43,213 +39,47 @@ GCC-8.1.0 [x86_64-posix-seh](https://sourceforge.net/projects/mingw-w64/files/To
 
 **Bước 3:** Cài CodeBlock
 
-**Bước 4:** Mở cbp và gõ F9 hoặc chạy file sad.exe
+**Bước 4:** Mở file cbp và gõ F9 hoặc chạy file sad.exe
 
 
 # 1. Bắt đầu game
 
-Chờ một chút rồi click vào nút “START” để bắt đầu chơi game.
-<div style="text-align: center;">
+* Chờ một chút rồi click vào nút “START” để bắt đầu chơi game.
+
+* Nếu có ván đấu còn dở hãy bấm nút "CONTINUE" để tiếp tục game đấu đó.
 
 ![ezgif com-video-to-gif](readme-img/MenuInterface.png)
 
-</div>
 
 
-# 2. Chọn level
+# 2. Các thành phần trong game:
 
-Có tổng cộng 12 level với mức độ khó dễ khác nhau để bạn chơi. Khi di chuột lên 1 level, level đó sẽ phát sáng. Chỉ cần
-click chuột để chơi level đó.
-<div style="text-align: center;">
+* Các quân cờ, gồm trắng và đen đã có các hàm logic nhất định
+* Nút Return trở lại Menu chính
+![ezgif com-video-to-gif](readme-img/GameInterface.png)
 
-![image](resources/preview/choose_level.png)
-</div>
+# 3. Cách chơi
+* Dùng chuột di chuyển các quân cờ, nếu di chuyển không đúng theo luật cờ vua thì quân cờ sẽ không di chuyển. Luật cờ vua có thể được xem dưới link sau:
+**https://vietnamchess.vn/index.php/experience-news/lawofchess/lawofchess2018**
 
+# 4. Chiến thắng và thất bại
 
-Tuy nhiên khi mới bắt đầu, bạn chỉ mở được 1 level. Chiến thắng lần lượt từng level để mở khóa và chơi level tiếp theo:
-<div style="text-align: center;">
-
-![image](resources/preview/choose_level1.png)
-</div>
-
-
-Ngoài ra còn có 3 nút chức năng khác để người chơi đổi tên, đóng game hay thậm chí là reset lại tiến trình của game để
-trải nghiệm game lại từ đầu.
-
-<div style="text-align: center;">
-
-![image](resources/preview/choose_level2.png)
-</div>
-
-
-
-Khi vào game, có 2 loại level mà mọi người sẽ gặp: buổi sáng (bên trái) và buổi tối (bên phải)
-<div style="text-align: center;">
-
-![image](resources/preview/levels.png)
-</div>
-
-- Buổi sáng thì thi thoảng sẽ có sun (mặt trời) từ trên trời rơi xuống.
-- Còn buổi tối thì không có, vậy nên game sẽ khó hơn một chút.
-
-Trước khi bắt đầu game, bạn sẽ được biết trước có những loại zombie gì sẽ xuất hiện.
-<div style="text-align: center;">
-
-![image](resources/preview/credit.png)
-</div>
-
-# 3. Các thành phần trong game:
-
--    Sun (Mặt trời) ![image](resources/preview/sun.png)
-     : là đơn vị để mua plant (cây) trong game. Nhấp vào để thu. Và nên chú ý là nếu một sun tồn tại quá lâu, nó sẽ mờ
-     dần rồi biến mất. Bạn sẽ không thể thu chúng sau khi chúng đã biến mất.
-
--    Sun bar (Thanh mặt trời) ![image](resources/preview/sun_bar.png)
-     : là bảng đếm số mặt trời mà người chơi đang có
-
-- Plant seeds: tất cả các giống cây là người chơi đang sở hữu. Để chọn một giống cây mang đi trồng, người chơi phải
-  click vào plant seed hoặc nhấn phím 1, 2, 3, 4, 5 (như trong game đánh dấu) để chọn cây rồi trồng trên sân. Tất nhiên,
-  bạn phải đủ sun để mua cây và plant seed phải có thời gian chờ khác nhau để trồng cây giống đó lần nữa.
-
-<div style="text-align: center;">
-
-![image](resources/preview/plant_seed.png)
-</div>
-
-- Shovel (Xẻng): Là vật dụng vô cùng hữu hiệu để bạn có thể đào đi những cây không cần thiết và thay vào đó cây mới.
-
-<div style="text-align: center;">
-
-![image](resources/preview/shovel.png)
-</div>
-
-- Thanh tiến trình game (progress bar): Là thanh bạn có thể theo dõi để xem còn bao nhiêu zombie tiếp theo sẽ ra hay bạn
-  đã chơi được bao nhiêu phần của level. Bên trái sẽ là level hiện tại bạn đang chơi.
-
-<div style="text-align: center;">
-
-![image](resources/preview/progress_bar.png)
-</div>
-
-- Nút tua nhanh game (Turbo button): Nếu thấy game quá chậm hay quá dễ mà bạn cần tiết kiệm thời gian, hãy nhấn nút để
-  trải nghiệm game với tốc độ x2 tốc độ gốc.
-- Và nếu thấy game quá đáng sợ ở tốc độ này, hãy nhấn lại để game trở về tốc độ bình thường.
-  ● Game ở tốc độ ban đầu:  ![image](resources/preview/faster.png)
-
-● Game đang ở tốc độ nhanh gấp 2 ban đầu:  ![image](resources/preview/faster_triggered.png)
-
-- Nút dừng game (Pause Button): Bạn có việc cần dừng game để lúc sau chơi tiếp ư? Hay bạn muốn điều chỉnh âm lượng của
-  nhạc nền và hiệu ứng âm thanh? Quá đơn giản, game có thể dừng lại bằng cách click ![image](resources/preview/pause.png)  hoặc
-  click đâu đó bên ngoài game.
-- Máy cắt cỏ (Mower): Nếu bạn để zombie lại quá gần nhà, máy cắt cỏ sẽ tự động kích hoạt và tiêu diệt tất cả zombie hiện
-  tại đang ở hàng đó. Chú ý là mỗi hàng chỉ có một máy cắt cỏ thôi.
-
-<div style="text-align: center;">
-
-![image](resources/preview/mower.png)
-</div>
-
-- Bố cục game cơ bản:
-
-<div style="text-align: center;">
-
-![image](resources/preview/game.png)
-</div>
-
- 
-
-# 4. Cách chơi
-
-Trồng cây để tấn công và phòng thủ, không cho zombie bước vào nhà bạn.<br/>
-Để trồng cây, Chọn hạt giống của cây đó (bàn phím hoặc click chuột) rồi đặt vào ô muốn trồng. <br/>
-Có thể đào những cây đang sử dụng bằng xẻng.<br/>
-Cây sẽ bị zombie ăn mất.
-
-## a. Các loại cây
-
-Có 6 loại cây, lần lượt theo thứ tự có thể nhận được trong game là:
-
-|                                                                             | Tên cây	     | Chức năng                                                                                                                    |
-|-----------------------------------------------------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------------|
-| <img src="resources/images/Plant_sheet/peashooter/Peashooter.png" width=50>  | Peashooter	  | Mỗi lần bắn một đậu vào zombie.                                                                                              |
-| <img src="resources/images/Plant_sheet/sunflower/Sunflower.png" width=44>    | Sunflower	   | Tạo thêm mặt trời để trồng cây                                                                                               |
-| <img src="resources/images/Plant_sheet/walnut/Walnut.png" width=42>          | Wall-nut	    | Chịu được nhiều phát ăn của zombie để bảo vệ các cây khác.                                                                   |
-| <img src="resources/images/Plant_sheet/snowpea/SnowPea.png" width=52>        | Snow Pea	    | Mỗi lần bắn một đậu băng vào zombie. Đậu băng không tăng sát thương nhưng làm chậm tốc độ di chuyển và tốc độ ăn của zombie. |
-| <img src="resources/images/Plant_sheet/potatomine/Potato_Mine.png" width=56> | Potato Mine  | Tiêu diệt zombie khi chạm nó nhưng cần thời gian để kích hoạt.                                                               |
-| <img src="resources/images/Plant_sheet/cherrybomb/Cherrybomb.png" width=48>  | Cherry Bomb	 | Ngay lập tức tiêu diệt tất cả zombie trong khu vực 3x3.                                                                      |
-
-## b. Các loại zombie
-
-- Có 5 loại zombie:
-
-|                                         | Tên zombie 	       | Chức năng                                                                                        |
-|-----------------------------------------|--------------------|--------------------------------------------------------------------------------------------------|
-| ![image](resources/images/Choose_level/normal.png) | Browncoat Zombie	  | Ăn cây và não của bạn.                                                                           |
-| ![image](resources/images/Choose_level/flag.png)   | Flag Zombie	       | Báo hiệu một lượng lớn zombie đang chuẩn bị ra.                                                  |
-| ![image](resources/images/Choose_level/cone.png)   | Conehead Zombie	   | Trâu gấp 3 lần zombie thường                                                                     |
-| ![image](resources/images/Choose_level/bucket.png) | Buckethead Zombie	 | Trâu gấp 6.5 lần zombie thường                                                                   |
-| ![image](resources/images/Choose_level/door.png)   | Door Zombie	       | Trâu gấp 6.5 lần zombie thường. Không bị ảnh hưởng bởi sự làm chậm của đạn băng nếu vẫn còn cửa. |
-
-# 5. Chiến thắng và thất bại
-
-- Bạn sẽ chiến thắng nếu tiêu diệt hết tất cả zombie trong ván đó.
-
-<div style="text-align: center;">
-
-![image](resources/preview/win.png)
-</div>
-
-- Bạn sẽ thất bại nếu có một zombie nào đó đi hết sân để vào nhà bạn.
-
-<div style="text-align: center;">
-
-![image](resources/preview/lose.png)
-</div>
-
----
+* Game chưa set up được logic chiếu hết/hòa của cờ vua
 
 ### Về đồ họa của game:
+Nguồn của âm thanh và hình ảnh được chủ yếu lấy từ đồ họa của
+chess.com:             https://www.chess.com/ 
 
-[[Cách làm hiệu ứng từng cây, zombie trong game]](about_graphics.md)
+
 
 ### Về source code game:
 
-- Folder draw:
-    * khởi tạo window và renderer
-    * chứa tất cả các ảnh trong game (được đánh số)
-    * chứa hầu hết các câu lệnh của SDL2, SDL2_image, SDL2_ttf, sử dụng để vẽ load ảnh, chữ và vẽ lên renderer, window.
-- Folder elements: Chứa tất cả các thành phần của game:
-    * bullets: các loại đạn
-    * button: các loại nút trong game (có thể nhấn được hoặc không)
-    * Map: chứa hàm random và khởi tạo bảng 5 x 9 cho màn chơi.
-    * mower: máy cắt cỏ (Cán zombie)
-    * plants: chứa tất cả các loại plant (được kế thừa từ class Plants)
-    * zombies: chứa tất cả các loại zombies (được kế thừa từ class Zombie)
-    * elements: gom lại các loại plants và zombies.
-    * elements_actions:
-        + chứa hầu hết các tương tác giữa các thành phần game với nhau, và với màn chơi.
-        + tạo ngẫu nhiên zombie
-        + cập nhật tất cả các thay đổi của game theo từng khung hình
-- Folder events: Xử lý các sự kiện trong game (sự kiện chuột, bàn phím)
-    * in_game: xử lý các sự kiện khi đang trong một màn chơi
-        + credit: phần giới thiệu các loại zombie & ready-set-plant
-        + game: tất cả các sự kiện trong một màn chơi
-        + lose: xử lý khi thua
-        + main_menu: xử lý khi người chơi muốn trở lại phần chọn màn chơi
-        + pause_menu: xử lý khi người chơi dừng game (nút dừng hoặc click ra ngoài game)
-        + restart_menu: xử lý khi người chơi muốn chơi lại màn chơi
-        + turbo: xử lý nút tăng tốc game
-        + volume: xử lý nút điều chỉnh âm lượng nhạc nền và hiệu ứng.
-        + win: xử lý khi chiến thắng trò chơi.
-    * mouse_cursor: xử lý con trỏ chuột
-    * out_game: xử lý các sự kiện ngoài màn chơi
-        + choose_level: xử lý chọn màn chơi
-        + quit_menu: xử lý nút quit game: tắt game
-        + reset_level: xử lý nút reset level: xóa tiến trình chơi
-        + start_game: xử lý nút "Click to start" để bắt đầu vào game.
-        + unlock_plant: xử lý mở khóa plant mới.
-- Folder level: xử lý phần lấy dữ liệu ván chơi.
-- Folder music: xử lý phần âm thanh của game - SDL2_mixer
-- Folder player: xử lý phần dữ liệu người chơi. Bao gồm việc lấy và thay đổi tên, tiến trình.
-- game_stats.hpp: chứa tất cả thông số game
-- game.hpp và game.cpp: hàm main() của trò chơi.
+- Folder ChessPieces: Chứa tất cả các quân cờ
+    * Piece: Class xử lý chung (vị trí, bị ăn, hình ảnh)
+    * Pawn, Rook, ... : Class con của Piece, xử lí logic cơ bản của việc di chuyển
+- EventManager: Sử lí các event thông thường
+- Map: Giao diện chính của bàn cờ, xử lí một số logic của cờ vua, lưu vị trí của từng quân cờ
+- GameObject: Xử lí hình ảnh quân cờ
+- Menu: xử lí giao diện Menu
+- game.hpp và game.cpp: xử lí logic chuột và âm thanh, file chính để game hoạt động
+- main.cpp: hàm main() của game

@@ -1,4 +1,4 @@
-#include "SDL.h"
+//#include "SDL.h"
 #include <iostream>
 #include "game.hpp"
 
@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
 
     Game = new game();
-    Game->init("Hanabi", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, false);
+    Game->init("Chess", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, false);
     while ( Game->running() )
     {
         Uint32 start = SDL_GetTicks();

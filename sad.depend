@@ -148,8 +148,7 @@
 	"GameObject.h"
 	"TextureManager.h"
 
-1711042541 source:c:\users\admin\desktop\chess2\src\main.cpp
-	"SDL.h"
+1714142628 source:c:\users\admin\desktop\chess2\src\main.cpp
 	<iostream>
 	"game.hpp"
 

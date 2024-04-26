@@ -51,7 +51,7 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
             SDL_SetRenderDrawColor ( renderer, 255, 255, 255, 255 );
           std::cout << "Renderer Created\n";
         }
-        if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == 0) 
+        if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == 0)
         {
             std::cout << "Initialize SDL_mixer! " << std::endl;
         }
@@ -62,15 +62,13 @@ void game::init ( const char * title, int xpos, int ypos, int width, int height,
         isRunning = false;
     }
 
-    std::ifstream input("data.txt", std::ios::app);
+    std::ifstream input("Chess2/data.txt");
     std::cout<<"Load data\n";
-    for (int i = 0; i < 8; i++) 
+    for (int i = 0; i < 8; i++)
     {
-       for (int j = 0; j < 8; j++) 
+       for (int j = 0; j < 8; j++)
         {
             input >> prevGame[i][j];
-            if(prevGame[i][j] != 0) std::cout<<prevGame[i][j]<<" ";
-            else std::cout<<"  ";
         }
     }
     std::cout<<"Load previous game\n";
@@ -294,9 +292,9 @@ void game::update()
         m_Map->Update();
     std::fstream output;
     output.open("data.txt", std::ios::out | std::ios::trunc);
-    for (int i = 0; i < 8; i++) 
+    for (int i = 0; i < 8; i++)
     {
-        for (int j = 0; j < 8; j++) 
+        for (int j = 0; j < 8; j++)
         {
             output << prevGame[i][j] << " ";
         }
