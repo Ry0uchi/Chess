@@ -37,7 +37,7 @@ Hoặc Chọn Code -> Download Zip
 **Bước 2:** Cài mingw. Ở đây mình cài đặt phiên bản MinGW-W64
 GCC-8.1.0 [x86_64-posix-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download).<br/>
 
-**Bước 3:** Cài CodeBlock
+**Bước 3:** Cài CodeBlock. Mình cài CodeBlock cho Window qua: https://sourceforge.net/projects/codeblocks/files/Binaries/20.03/Windows/codeblocks-20.03-setup.exe/download <br/>
 
 **Bước 4:** Mở file cbp và gõ F9 hoặc chạy file sad.exe
 
