@@ -349,6 +349,7 @@ void Map::Delete()
     whitePieces.shrink_to_fit();
     blackPieces.clear();
     blackPieces.shrink_to_fit();
+    delete BackButton;
 }
 
 bool Map::IsPawnCrossed(const Vect2i& Bpos, const bool& isWhite)

@@ -30,7 +30,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include/SDL2" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer" />
+			<Add directory="lib" />
+		</Linker>
 		<Unit filename="src/ChessPieces/Bishop.cpp" />
 		<Unit filename="src/ChessPieces/Bishop.h" />
 		<Unit filename="src/ChessPieces/King.cpp" />
